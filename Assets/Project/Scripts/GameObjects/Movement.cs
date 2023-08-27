@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void Move()
+    public void Move()
     {
         Vector3 _movement = new Vector3(_input.x, 0, _input.y) * _force;
         if (_movement != Vector3.zero)
