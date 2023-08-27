@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemieStateMachineManager : MonoBehaviour
 {
     private BaseState _currentState;
+    private EnemieManager _enemieManager;
+    
     private BaseState _defaultState = new SearchState();
     public void Start()
     {
+        _enemieManager = GetComponent<EnemieManager>();
+        
+
         _currentState = _defaultState;
         _currentState.EnterState(this);
     }
@@ -31,4 +37,5 @@ public class EnemieStateMachineManager : MonoBehaviour
     }
     //GetAndSet
     public BaseState getCurrentState{get{return _currentState;}}
+    public EnemieManager GetEnemieManager{get{return _enemieManager;}}
 }
