@@ -160,10 +160,7 @@ public class Movement : MonoBehaviour
             _isNearTree = true;
             _nearTree = collision.gameObject;
         }
-        //if (collision.gameObject.CompareTag("Pet"))
-        //{
-        //    Debug.Log("En collision con: " + collision.transform.name);
-        //}
+
     }
 
     private void OnCollisionExit(Collision collision) 
