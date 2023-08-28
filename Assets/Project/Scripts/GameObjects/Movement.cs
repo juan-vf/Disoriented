@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+// using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,6 +45,8 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+
+        startYScale = transform.localScale.y;
     }
 
     
@@ -136,6 +139,7 @@ public class Movement : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(rayOrigin, rayDirection, out hit, rangeRaycast, petLayer))
             {
+                Debug.Log("Pego el rayo");
                 GameObject hitObject = hit.collider.gameObject;
                 if (hitObject.CompareTag("Pet"))
                 {
