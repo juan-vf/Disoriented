@@ -34,7 +34,7 @@ public class NavMeshController : MonoBehaviour
         return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending;
     }
     public void PursueTarget(){
-        Debug.Log("target"+target.tag + target.position);
+        // Debug.Log("target"+target.tag + target.position);
         // Debug.Log("Persiguiendo");
         UpdateTargetDir(target.position);
     }

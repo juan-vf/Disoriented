@@ -31,10 +31,13 @@ public class SearchState : BaseState
         if(enemieStateMachineManager.GetEnemieManager.GetFieldOfView.WatchingPlayer){
             Debug.Log("VIENDO AL JUGADOR");
             _seen = true;
+            enemieStateMachineManager.SwitchState(enemieStateMachineManager.getPersuitState);
             //Cambia a el estado PERSAECUCION
         }
         if(_timeSearching > 5f){
             //Cambia a el estado tRANSPORTE O BUSCAR
+            _seen = false;
+            enemieStateMachineManager.SwitchState(enemieStateMachineManager.getTransportState);
         }
         _timeSearching += Time.deltaTime;
 
@@ -56,7 +59,6 @@ public class SearchState : BaseState
             result = hit.position;
             return true;
         }
-
         result = Vector3.zero;
         return false;
     }
