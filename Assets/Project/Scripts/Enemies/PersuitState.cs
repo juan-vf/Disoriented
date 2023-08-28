@@ -12,7 +12,7 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
         public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
         {
             Debug.Log("persuit state");
-            _navMeshController = enemieStateMachineManager.GetEnemieManager.GetNavMeshController;
+            
         }
         public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
         {
@@ -22,7 +22,9 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
         }
         public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
         {
+            var _navMeshController = enemieStateMachineManager.GetEnemieManager.GetNavMeshController;
             var fOV = enemieStateMachineManager.GetEnemieManager.GetFieldOfView;
+            _navMeshController.setTarget(fOV.target);
             _navMeshController.PursueTarget();
             if(!fOV.WatchingPlayer){
                 enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
