@@ -17,22 +17,22 @@ public class FieldOfView : MonoBehaviour
         Detected(target, m_dstVision, m_angleVision);
     }
 
-    private void OnDrawGizmos() {
+    // private void OnDrawGizmos() {
 
         // FieldVisionController fov = (FieldVisionController)target;
 
-        Color color = new Color(1, 0, 0, 0.2f);
+    //     Color color = new Color(1, 0, 0, 0.2f);
 
-        Handles.color = color;
-        Handles.DrawSolidArc(
-            transform.position,
-            transform.up,
-            Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
-            m_angleVision,
-            m_dstVision
-        );
+    //     Handles.color = color;
+    //     Handles.DrawSolidArc(
+    //         transform.position,
+    //         transform.up,
+    //         Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
+    //         m_angleVision,
+    //         m_dstVision
+    //     );
 
-    }
+    // }
     public void Detected(
         Transform targetTrasfom,
         float distanceVision,
