@@ -48,6 +48,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float _timeStop;
     private bool _isMoving = false;
+    private bool _isJumping = false;
 
 
     private void Awake()
@@ -81,15 +82,21 @@ public class Movement : MonoBehaviour
         }
     }
     //TODO: Corregir frenada cuando el personaje termina el salto.
-    // public void Jump(InputAction.CallbackContext callbackContext)
-    // {
-    //     if (callbackContext.performed && _isGrounded)
-    //     {
-    //         _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
-    //         _rb.AddForce(Vector3.up * _upForce, ForceMode.Force);
-    //         _isGrounded = false;            
-    //     }
-    // }
+    public void Jump(InputAction.CallbackContext callbackContext)
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(_rb.transform.position, Vector3.down, out hit, 1f)){
+            _isGrounded = true;
+            _isJumping = false;
+        }
+        if (callbackContext.performed && _isGrounded)
+        {
+            _isJumping = true;
+            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            _rb.AddForce(Vector3.up * _upForce, ForceMode.Force);
+            _isGrounded = false;     
+        }
+    }
 
     public void Move()
     {
@@ -98,12 +105,14 @@ public class Movement : MonoBehaviour
         if (_movement != Vector3.zero)
         {
             _isMoving = true;
+            _isJumping = false;
             
         }else if(_isMoving)
         {
             StartCoroutine(Lerp(_timeStop, _rb.velocity, Vector3.zero));
             _isMoving = false;
         }
+
         Quaternion targetRotation = Quaternion.LookRotation(_movement);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f);
         _rb.AddForce(_movement * _force);
@@ -206,5 +215,8 @@ public class Movement : MonoBehaviour
     //     }
 
     // }
+    public bool getIsMoving{get{return _isMoving;}}
+    public bool getIsJumping{get{return _isJumping;}}
+    public bool getIsGrounded{get{return _isGrounded;}}
  
 }
