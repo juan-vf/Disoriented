@@ -7,6 +7,7 @@ public class NoahStateMachineManager : MonoBehaviour
     private NoahBaseState _currentState;
     private NoahBaseState _defaultState = new NoahDefaultState();
     private NoahBaseState _ClimbState = new NoahClimbState();
+    private NoahBaseState _JumpState = new NoahJumpState();
 
     private PlayerInputManager _playerInputManager;
     private Rigidbody _rb;
@@ -36,5 +37,6 @@ public class NoahStateMachineManager : MonoBehaviour
     public PlayerInputManager GetPlayerInputManager{get{return _playerInputManager;}}
     public NoahBaseState getNoahDefaultState{get{return _defaultState;}}
     public NoahBaseState getNoahClimbState{get{return _ClimbState;}}
+    public NoahBaseState getJumpState{get{return _JumpState;}}
     public Rigidbody GetRigidbody{get{return _rb;}}
 }

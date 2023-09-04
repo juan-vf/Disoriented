@@ -37,21 +37,21 @@ public class PlayerInputManager : MonoBehaviour
     public void Jump(InputAction.CallbackContext callbackContext){
         if(callbackContext.started){
             _IsJumping = true;
-        }else if(callbackContext.canceled || callbackContext.performed){
+        }else if(callbackContext.canceled){
             _IsJumping = false;
         }
     }
     public void Crouch(InputAction.CallbackContext callbackContext){
         if(callbackContext.started){
             _IsCrouched = true;
-        }else if(callbackContext.canceled || callbackContext.performed){
+        }else if(callbackContext.canceled){
             _IsCrouched = false;
         }
     }
     public void Collect(InputAction.CallbackContext callbackContext){
         if(callbackContext.started){
             _IsPickedUp = true;
-        }else if(callbackContext.canceled || callbackContext.performed){
+        }else if(callbackContext.canceled){
             _IsPickedUp = false;
         }
     }

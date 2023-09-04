@@ -7,9 +7,10 @@ public class NoahDefaultState : NoahBaseState
     private Vector3 _movement;
     //VARIABLES GLOBALES PARA MOSTRAR Y MODIFICAR EN EL EDITOR, PARA TESTEAR
     private float _walkSpeed = 3f;
-    float _maxRayDistanceToClimb = 1f;
+    float _climbRaycastDistance = 1f;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
+        Debug.Log("DefaultState");
         // throw new System.NotImplementedException();
     }
 
@@ -28,20 +29,19 @@ public class NoahDefaultState : NoahBaseState
         
         _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
         Move(_movement, noahStateMachineManager.GetRigidbody);
-        /*
-            PARA CAMBIAR DE ESTADOS
-            -APRETA LA E, LANZA UN RAYO Y SI CHOCA CAMBIA A CLIMBSTATE
-            -SI SALTA ESTADO JUMPSTATE
-        */
         RaycastHit hit;
-        Debug.Log(noahStateMachineManager.GetRigidbody.transform.forward + " " + noahStateMachineManager.transform.forward * .1f);
+        // Debug.Log(noahStateMachineManager.GetRigidbody.transform.forward + " " + noahStateMachineManager.transform.forward * .1f);
         if(PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
             noahStateMachineManager.GetRigidbody.transform.position, 
             noahStateMachineManager.GetRigidbody.transform.forward, 
-            _maxRayDistanceToClimb
+            out hit,
+            _climbRaycastDistance
             )){
-            Debug.Log("Para trepar");
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);
+        }
+        Debug.Log(PlayerInputManager.getCurrent.getIsJumping);
+        if(PlayerInputManager.getCurrent.getIsJumping){
+            noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
         }
     }
     void Move(Vector3 input, Rigidbody _rb){
@@ -53,5 +53,6 @@ public class NoahDefaultState : NoahBaseState
         {
             _rb.transform.forward = input;
         }
+        return;
     }
 }
