@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NoahDefaultState : NoahBaseState
@@ -39,7 +40,7 @@ public class NoahDefaultState : NoahBaseState
             )){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);
         }
-        Debug.Log(PlayerInputManager.getCurrent.getIsJumping);
+
         if(PlayerInputManager.getCurrent.getIsJumping){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
         }

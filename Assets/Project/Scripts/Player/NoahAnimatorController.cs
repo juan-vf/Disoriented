@@ -6,45 +6,30 @@ public class NoahAnimatorController : MonoBehaviour
 {
     private Animator _animator;
     private Movement _movement;
+    private float _velocity = 0.0f;
+    private float _acceleration = 0.1f;
+    private float _deceleration = 0.5f;
+    private int _velocityHash;
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _velocityHash = Animator.StringToHash("Velocity");
         // _movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Walk();
-        // Jump();
-        // Idle();
-    }
-    private void Idle()
-    {
-        if (!_movement.getIsMoving)
-        {
-            _animator.SetBool("IsWalking", false);
-            // _animator.SetBool("IsJumping", false);
-            _animator.SetBool("IsIdle", true);
+        if(PlayerInputManager.getCurrent.getMove != Vector2.zero && _velocity < 1.0f){
+            _velocity += Time.deltaTime * _acceleration;
         }
-    }
-    private void Jump() { 
-        if(_movement.getIsJumping){
-            _animator.SetBool("IsJumping", true);
-            // _animator.SetBool("IsIdle", false);
-            Debug.Log(_movement.getIsJumping);
-            // _animator.SetBool("IsWalking", false);
-            _animator.SetBool("IsJumping", false);
+        if(PlayerInputManager.getCurrent.getMove == Vector2.zero && _velocity > 0.0f){
+            _velocity -=Time.deltaTime * _deceleration;
         }
-    }
-    private void Walk()
-    {
-        if (_movement.getIsMoving)
-        {
-            _animator.SetBool("IsIdle", false);
-            _animator.SetBool("IsWalking", true);
-            // _animator.SetBool("IsJumping", false);
+        if(PlayerInputManager.getCurrent.getMove == Vector2.zero && _velocity < 0.0f){
+            _velocity = 0.0f;
         }
+        _animator.SetFloat(_velocityHash, _velocity);
     }
 }
