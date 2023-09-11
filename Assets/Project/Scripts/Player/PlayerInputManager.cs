@@ -11,7 +11,7 @@ public class PlayerInputManager : MonoBehaviour
     // private InputAction _IsClimbing;
     private bool _IsClimbing;
     private bool _IsJumping;
-    private bool _IsCrouched;
+    private bool _IsCrouched = false;
     private bool _IsPickedUp;
     void Awake() {
         _current = this;
@@ -44,8 +44,12 @@ public class PlayerInputManager : MonoBehaviour
     public void Crouch(InputAction.CallbackContext callbackContext){
         if(callbackContext.started){
             _IsCrouched = true;
-        }else if(callbackContext.canceled){
+        }
+        if(callbackContext.canceled){
             _IsCrouched = false;
+        }
+        if(callbackContext.performed){
+            _IsCrouched = true;
         }
     }
     public void Collect(InputAction.CallbackContext callbackContext){

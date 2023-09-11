@@ -28,8 +28,8 @@ public class NoahDefaultState : NoahBaseState
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
         
-        _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
-        Move(_movement, noahStateMachineManager.GetRigidbody);
+        // _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
+        // Move(_movement, noahStateMachineManager.GetRigidbody);
         RaycastHit hit;
         // Debug.Log(noahStateMachineManager.GetRigidbody.transform.forward + " " + noahStateMachineManager.transform.forward * .1f);
         if(PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
@@ -43,6 +43,9 @@ public class NoahDefaultState : NoahBaseState
 
         if(PlayerInputManager.getCurrent.getIsJumping){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
+        }
+        if(PlayerInputManager.getCurrent.getIsCrouched){
+            noahStateMachineManager.SwitchState(noahStateMachineManager.getCrouchState);
         }
     }
     void Move(Vector3 input, Rigidbody _rb){

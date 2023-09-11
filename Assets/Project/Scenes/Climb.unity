@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 700106278}
   - component: {fileID: 700106279}
   - component: {fileID: 700106280}
+  - component: {fileID: 700106281}
   m_Layer: 0
   m_Name: Noah
   m_TagString: Untagged
@@ -768,6 +769,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf88be979f1172f40a80d7927981f511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &700106281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700106269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bee5bb0d5951404d89d6f43a5734510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &762918264 stripped
