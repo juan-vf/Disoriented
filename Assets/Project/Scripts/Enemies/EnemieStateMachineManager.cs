@@ -39,10 +39,17 @@ public class EnemieStateMachineManager : MonoBehaviour
     {
         _currentState.OnTriggerEnter(other);
     }
+
+    public void Exit()
+    {
+        throw new System.NotImplementedException();
+    }
+
     //GetAndSet
     public BaseState getCurrentState{get{return _currentState;}}
     public BaseState getPersuitState{get{return _persuitState;}}
     public BaseState GetSearchState{get{return _searchState;}}
     public BaseState getTransportState{get{return _transportState;}}
     public EnemieManager GetEnemieManager{get{return _enemieManager;}}
+
 }

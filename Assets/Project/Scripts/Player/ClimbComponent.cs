@@ -58,6 +58,7 @@ public class ClimbComponent : CharacterBaseComponent
         }
 
     }
+    public bool getFinishClimbing{get{return _finishClimbing;}}
     public override void Process()
     {
         throw new System.NotImplementedException();

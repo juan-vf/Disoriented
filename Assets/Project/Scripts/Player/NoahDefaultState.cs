@@ -48,15 +48,15 @@ public class NoahDefaultState : NoahBaseState
             noahStateMachineManager.SwitchState(noahStateMachineManager.getCrouchState);
         }
     }
-    void Move(Vector3 input, Rigidbody _rb){
-        Vector3 oldVelo = _rb.velocity;
-        Vector3 newVelo = input * _walkSpeed;
-        newVelo.y = oldVelo.y;
-        _rb.velocity = newVelo;
-        if (input.sqrMagnitude > 0.01f)
-        {
-            _rb.transform.forward = input;
-        }
-        return;
-    }
+    // void Move(Vector3 input, Rigidbody _rb){
+    //     Vector3 oldVelo = _rb.velocity;
+    //     Vector3 newVelo = input * _walkSpeed;
+    //     newVelo.y = oldVelo.y;
+    //     _rb.velocity = newVelo;
+    //     if (input.sqrMagnitude > 0.01f)
+    //     {
+    //         _rb.transform.forward = input;
+    //     }
+    //     return;
+    // }
 }

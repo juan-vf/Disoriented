@@ -11,6 +11,7 @@ public class NoahStateMachineManager : MonoBehaviour
     private NoahBaseState _crouchState = new CrouchState();
 
     private PlayerInputManager _playerInputManager;
+    private NoahController _noahController;
     private Rigidbody _rb;
     void Start()
     {
@@ -36,6 +37,7 @@ public class NoahStateMachineManager : MonoBehaviour
         }
     }
     public PlayerInputManager GetPlayerInputManager{get{return _playerInputManager;}}
+    public NoahController GetNoahController{get{return _noahController;}}
     public NoahBaseState getNoahDefaultState{get{return _defaultState;}}
     public NoahBaseState getNoahClimbState{get{return _ClimbState;}}
     public NoahBaseState getJumpState{get{return _JumpState;}}

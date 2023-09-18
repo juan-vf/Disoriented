@@ -50,7 +50,6 @@ public class NoahJumpState : NoahBaseState
     }
     void Jump(Rigidbody rb){
         rb.velocity = Vector3.up * _jumpSpeed;
-        Debug.Log("");
         // rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
     }
 }

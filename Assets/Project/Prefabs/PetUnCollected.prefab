@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 4334396879708440083}
   - component: {fileID: 5339234544748360199}
   - component: {fileID: 2766213311656030040}
+  - component: {fileID: 6070036783325251390}
+  - component: {fileID: 4756228608313447737}
+  - component: {fileID: 3321447375660764263}
   m_Layer: 6
-  m_Name: Pet
+  m_Name: PetUnCollected
   m_TagString: Pet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,5 +106,46 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6070036783325251390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871075342146095794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97af2ccd81502744b82dc2c88ba53cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+--- !u!114 &4756228608313447737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871075342146095794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb701a089c5b6846969eed3a20fad89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pets:
+  - {fileID: 11400000, guid: 087742c4f5d2e3847961e7e5569da7e8, type: 2}
+  - {fileID: 11400000, guid: 5cf3c16fc3e8d9a45bc81f082a214871, type: 2}
+  - {fileID: 11400000, guid: 2613893c19534b449a43dd5685c4992b, type: 2}
+--- !u!114 &3321447375660764263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871075342146095794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09d34a45682b5742989a41630392e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -55,9 +55,11 @@ public class PlayerInputManager : MonoBehaviour
     public void Collect(InputAction.CallbackContext callbackContext){
         if(callbackContext.started){
             _IsPickedUp = true;
-        }else if(callbackContext.canceled){
+        }
+        if(callbackContext.canceled){
             _IsPickedUp = false;
         }
+
     }
     public static PlayerInputManager getCurrent{get{return _current;}}
     public Vector2 getMove{get{return _move;}}
