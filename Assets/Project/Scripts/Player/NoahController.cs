@@ -16,6 +16,7 @@ public class NoahController : MonoBehaviour
     [Header("Collect")]
     [SerializeField] private LayerMask _collectibleLayer;
     private bool _raycastForCollect;
+    [SerializeField]private bool _hide;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +26,13 @@ public class NoahController : MonoBehaviour
         //COMPONENTES
         _movementComponent = new MovementComponent(_rb);
         _climbComponent = new ClimbComponent(_rb);
+        EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         _isFinishClimbing = _climbComponent.getFinishClimbing;
         //ANALIZAR CUANDO ESTE SALTANDO
         if (_noahStateMachineManager.getCurrentState == _noahStateMachineManager.getNoahClimbState)
@@ -52,6 +55,10 @@ public class NoahController : MonoBehaviour
         // }
 
     }
+    void HiddenUpdates(bool value){
+        _hide = value;
+    }
+    /*
     bool Collect()
     {
         RaycastHit hit;
@@ -63,6 +70,8 @@ public class NoahController : MonoBehaviour
         }
         return false;
     }
+    */
     public bool GetIsFinishClimbing { get { return _isFinishClimbing; } }
+    public bool GetHide{get {return _hide;}}
 
 }

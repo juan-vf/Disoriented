@@ -17,12 +17,12 @@ public class PetEventsManager : MonoBehaviour
     public event Action<bool> onBackPackFull;
     public void GrabPet()
     {
-            onGrabPet?.Invoke();
+        onGrabPet?.Invoke();
     }
     public void SendPetData(int id){
-            onSendPetData?.Invoke(id);
+        onSendPetData?.Invoke(id);
     }
     public void BackPackFull(bool isFull){
-        onBackPackFull?.Invoke(isFull);
+    onBackPackFull?.Invoke(isFull);
     }
 }

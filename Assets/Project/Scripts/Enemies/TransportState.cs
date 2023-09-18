@@ -53,11 +53,11 @@ public class TransportState : BaseState
         }
         //--------------------------()----------------------------
         //CHANGE STATES LOGIC
-        if (_fOV.WatchingPlayer)
+        if (_fOV.WatchingPlayer && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.getPersuitState);
         }
-        if (_fOV.InRange)
+        if (_fOV.InRange && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
         }

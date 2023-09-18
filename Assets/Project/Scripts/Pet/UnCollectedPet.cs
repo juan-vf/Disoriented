@@ -15,10 +15,8 @@ public class UnCollectedPet : MonoBehaviour
         // PetEventsManager.GetCurrent.onGrabPet += Picked;
     }
     private void Update() {
-        Debug.Log(_enabledToCollect);
     }
     private void OnCollisionStay(Collision other) {
-        Debug.Log("Collisionando");
         bool tag = other.gameObject.tag == "Player";
         if(tag && PlayerInputManager.getCurrent.getIsPickedUp && _enabledToCollect){
             Picked();

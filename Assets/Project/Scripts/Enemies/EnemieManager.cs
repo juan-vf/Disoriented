@@ -13,6 +13,7 @@ public class EnemieManager : MonoBehaviour
     private bool holdingPet = false;
     private NavMeshController _enemieNavMeshController;
     private FieldOfView _fieldOfView;
+    private bool _playerIsHidden;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +21,15 @@ public class EnemieManager : MonoBehaviour
         _fieldOfView = GetComponent<FieldOfView>();
 
         ChestEventSystem.current.onDropPet += instanciatePet;
+        EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+    void HiddenUpdates(bool hidden){
+        _playerIsHidden = hidden;
     }
     public void grabPet(){
         holdingPet = true;
@@ -44,4 +49,5 @@ public class EnemieManager : MonoBehaviour
     public Transform GetPointB{get{return pointB;}}
     public NavMeshController GetNavMeshController{get{return _enemieNavMeshController;}}
     public FieldOfView GetFieldOfView{get{return _fieldOfView;}}
+    public bool GetPlayerIsHidden{get{return _playerIsHidden;}}
 }

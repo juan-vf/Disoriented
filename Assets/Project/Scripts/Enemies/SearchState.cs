@@ -28,7 +28,7 @@ public class SearchState : BaseState
 
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
     {
-        if(enemieStateMachineManager.GetEnemieManager.GetFieldOfView.WatchingPlayer){
+        if(enemieStateMachineManager.GetEnemieManager.GetFieldOfView.WatchingPlayer && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden){
             Debug.Log("VIENDO AL JUGADOR");
             _seen = true;
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.getPersuitState);
