@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3475784652329060625}
   - component: {fileID: 1426461537867464867}
   - component: {fileID: 1919127987101454537}
+  - component: {fileID: 7318590182845900959}
   m_Layer: 0
   m_Name: Enemie
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552924373216394470}
-  m_Mesh: {fileID: -2432090755550338912, guid: bb1778ffbc764d446b3162b23f2e6931, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: 5ffe854d982604d469bc7caf2c232c23, type: 3}
 --- !u!23 &3600398417491849349
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c1be43239db0544a87371f77b54b4c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   targetsVisibles: []
 --- !u!195 &3475784652329060625
 NavMeshAgent:
@@ -190,10 +191,37 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.07
-  m_Height: 9.19
+  m_Radius: 2.31
+  m_Height: 8
   m_Direction: 1
-  m_Center: {x: 0.0018775463, y: 3.9363995, z: 0.47513652}
+  m_Center: {x: 0, y: 4, z: 0.83}
+--- !u!54 &7318590182845900959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552924373216394470}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &7352143540924824117
 GameObject:
   m_ObjectHideFlags: 0
