@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class TransportState : BaseState
 {
+    private List<int> _petsSerialsIds;
+    private Vector3 _nextPetPosition;
     public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
     {
-        throw new System.NotImplementedException();
+        PetEventsManager.GetCurrent.onEnemyGoToPet += GotoPet;
     }
 
     public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        if(other.gameObject.tag == "Carriage"){
+            //LANZAR EVENTO ENEMYREQUEST
+            Debug.Log("LLEGO A LA CARROZA");
+        }
     }
 
     // private EnemieManager _enemieManager;
@@ -31,9 +35,10 @@ public class TransportState : BaseState
         var _isHoldingPet = _enemieManager.GetHoldingPet;
         var _fOV = _enemieManager.GetFieldOfView;
         // TRASPORT PETS LOGIC
+        /*
         if (_isHoldingPet)
         {
-            Debug.Log("Is Holding Pet: " + _isHoldingPet);
+            // Debug.Log("Is Holding Pet: " + _isHoldingPet);
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetPointB.position);
 
@@ -46,10 +51,29 @@ public class TransportState : BaseState
         {
             _navMeshController.UpdateTargetDir(_enemieManager.GetPointA.position);
         }
+        */
+        /*
         if (_navMeshController.IsArrived() && !_isHoldingPet)
         {
             _navMeshController.NavMeshStop();
             _enemieManager.grabPet();
+        }
+        */
+
+        //NEW TRANSPORT LOGIC WITH EVENTS
+        if(_isHoldingPet){
+            //IR HACIA LA CARROZA
+            _navMeshController.NavMeshGo();
+            _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
+            //EN EL TRIGGER ENTER CONTROLLAR QUE SI CHOCA A LA CARROZA O USAR EL IF PARA QUE SUELTE LA CARROZA
+            /*if (_navMeshController.IsArrived())
+            {
+                _enemieManager.dropPet();
+                //LANZAR EVENTO ENEMYREQUEST
+            }*/
+
+        }else if(_nextPetPosition != Vector3.zero){
+            _navMeshController.UpdateTargetDir(_nextPetPosition);
         }
         //--------------------------()----------------------------
         //CHANGE STATES LOGIC
@@ -61,6 +85,16 @@ public class TransportState : BaseState
         {
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
         }
+    }
+
+    void UpdatePetsSerialsIdList(List<GameObject> pets){
+        foreach (var pet in pets)
+        {
+            _petsSerialsIds.Add(pet.GetComponent<PetController>().GetSerialId);
+        }
+    }
+    void GotoPet(Vector3 petPosition){
+        _nextPetPosition = petPosition;
     }
 
 }

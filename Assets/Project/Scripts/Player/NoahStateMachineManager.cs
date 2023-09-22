@@ -15,6 +15,7 @@ public class NoahStateMachineManager : MonoBehaviour
     private Rigidbody _rb;
     void Start()
     {
+        _noahController = GetComponent<NoahController>();
         _playerInputManager = PlayerInputManager.getCurrent;
         _rb = GetComponent<Rigidbody>();
         _currentState = _defaultState;

@@ -15,6 +15,9 @@ public class EnemieStateMachineManager : MonoBehaviour
     private BaseState _transportState = new TransportState();
     public void Start()
     {
+        //EVENTOS
+        PetEventsManager.GetCurrent.onCallEnemieToTransport += InitTransport;
+        //
         _enemieManager = GetComponent<EnemieManager>();
         
 
@@ -43,6 +46,9 @@ public class EnemieStateMachineManager : MonoBehaviour
     public void Exit()
     {
         throw new System.NotImplementedException();
+    }
+    void InitTransport(){
+        SwitchState(_transportState);
     }
 
     //GetAndSet

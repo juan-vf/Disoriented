@@ -11,7 +11,6 @@ public class NoahDefaultState : NoahBaseState
     float _climbRaycastDistance = 1f;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
-        Debug.Log("DefaultState");
         // throw new System.NotImplementedException();
     }
 
@@ -27,36 +26,28 @@ public class NoahDefaultState : NoahBaseState
 
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
-        
-        // _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
-        // Move(_movement, noahStateMachineManager.GetRigidbody);
+        Debug.Log("DefaultState");
         RaycastHit hit;
-        // Debug.Log(noahStateMachineManager.GetRigidbody.transform.forward + " " + noahStateMachineManager.transform.forward * .1f);
         if(PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
             noahStateMachineManager.GetRigidbody.transform.position, 
             noahStateMachineManager.GetRigidbody.transform.forward, 
             out hit,
             _climbRaycastDistance
             )){
+                Debug.Log("Preparado para escalar");
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);
         }
 
-        if(PlayerInputManager.getCurrent.getIsJumping){
+        RaycastHit hitJump;
+        if(PlayerInputManager.getCurrent.getIsJumping && Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
+                        Vector3.down,
+                        out hitJump,
+                        .1f
+                        )){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
         }
         if(PlayerInputManager.getCurrent.getIsCrouched){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getCrouchState);
         }
     }
-    // void Move(Vector3 input, Rigidbody _rb){
-    //     Vector3 oldVelo = _rb.velocity;
-    //     Vector3 newVelo = input * _walkSpeed;
-    //     newVelo.y = oldVelo.y;
-    //     _rb.velocity = newVelo;
-    //     if (input.sqrMagnitude > 0.01f)
-    //     {
-    //         _rb.transform.forward = input;
-    //     }
-    //     return;
-    // }
 }

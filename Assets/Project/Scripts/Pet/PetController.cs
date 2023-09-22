@@ -8,6 +8,7 @@ public class PetController : MonoBehaviour
 {
     [SerializeField]
     private int _id;
+    private int _serialId;
     private Pet _pet;
     private Mesh _mesh;
     // private Material _Material;
@@ -31,7 +32,8 @@ public class PetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public int GetId{get{return _id;} set{_id = value;}}
+    public int GetSerialId{get{return _serialId;} set{_serialId = value;}}
 }

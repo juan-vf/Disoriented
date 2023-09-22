@@ -22,19 +22,21 @@ public class ClimbComponent : CharacterBaseComponent
             RaycastHit checkHit;
             if (Physics.Raycast(_rb.transform.position + offset,
                                 _rb.transform.forward,
-                                out checkHit))
+                                out checkHit, 2f))
             {
                 checkDirection += checkHit.normal;
                 k++;
             }
             // Rotate Offset by 90 degrees
             offset = Quaternion.AngleAxis(90f, _rb.transform.forward) * offset;
+            _finishClimbing = false;
         }
         checkDirection /= k;
 
         RaycastHit hit;
         if (Physics.Raycast(_rb.transform.position, -checkDirection, out hit))
         {
+            _finishClimbing = false;
             float dot = Vector3.Dot(_rb.transform.forward, -hit.normal);
 
             _rb.position = Vector3.Lerp(_rb.position,
@@ -53,6 +55,7 @@ public class ClimbComponent : CharacterBaseComponent
                 _jumping = PlayerInputManager.getCurrent.getIsJumping;
             }
         }else{
+            Debug.Log("Aquiii");
             _rb.velocity = Vector3.up;
             _finishClimbing = true;
         }

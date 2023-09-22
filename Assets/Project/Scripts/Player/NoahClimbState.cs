@@ -13,7 +13,6 @@ public class NoahClimbState : NoahBaseState
         _jumping = false;
         _finishClimbing = false;
         // noahStateMachineManager.GetRigidbody.useGravity = false;
-        Debug.Log("ClimbState");
     }
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)
@@ -28,6 +27,7 @@ public class NoahClimbState : NoahBaseState
 
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
+        Debug.Log("ClimbState");
         // _climbMovement = new Vector2(PlayerInputManager.getCurrent.getMove.x, PlayerInputManager.getCurrent.getMove.y).normalized;
         // noahStateMachineManager.GetRigidbody.useGravity = false;
         // Climb(_climbMovement, noahStateMachineManager.GetRigidbody);

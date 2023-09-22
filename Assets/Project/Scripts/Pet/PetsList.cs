@@ -14,6 +14,7 @@ public class PetsList : MonoBehaviour
     {
     }
     public static PetsList GetCurrent { get { return _current; } }
+    public int GetCount{get{return _pets.Count;}}
     public List<Pet> GetPets { get { return _pets; } }
     public Pet GetPetById(int id)
     {

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3912667833462393615}
-  - component: {fileID: 3680691638305709565}
   - component: {fileID: 7988652429190581288}
+  - component: {fileID: 3924589116024864770}
   m_Layer: 0
   m_Name: PetSpawnerandEventManager
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3680691638305709565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828870462311976771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e633f40aac58f945bfd1e655f55112f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _petPrefab: {fileID: 0}
 --- !u!114 &7988652429190581288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee572444a3dcdb40a533cd7a7b617cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3924589116024864770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828870462311976771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb701a089c5b6846969eed3a20fad89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pets:
+  - {fileID: 11400000, guid: 087742c4f5d2e3847961e7e5569da7e8, type: 2}
+  - {fileID: 11400000, guid: 5cf3c16fc3e8d9a45bc81f082a214871, type: 2}
+  - {fileID: 11400000, guid: 2613893c19534b449a43dd5685c4992b, type: 2}

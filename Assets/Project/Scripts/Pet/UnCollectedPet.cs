@@ -21,6 +21,10 @@ public class UnCollectedPet : MonoBehaviour
         if(tag && PlayerInputManager.getCurrent.getIsPickedUp && _enabledToCollect){
             Picked();
         }
+        if(other.gameObject.tag == "Enemy"){
+            PetEventsManager.GetCurrent.EnemyGrab(_petController.GetSerialId);
+            Destroy(gameObject);
+        }
     }
     private void Picked(){
         PetEventsManager.GetCurrent.SendPetData(_petController.GetId);
