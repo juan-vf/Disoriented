@@ -31,12 +31,14 @@ public class PetSpawnerController : MonoBehaviour
         _spawnsList = _petSpawner.GetSpawnList;
 
         PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
+        // PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
     }
     private void Update() {
 
+
         if(_callEnemieToTransport){
             //LANZA EVENTO PARA QUE LA MASCOTA CAMBIE A MODO TRANSPORTE
-            PetEventsManager.GetCurrent.CallEnemieToTransport();
+            // PetEventsManager.GetCurrent.CallEnemieToTransport();
             _callEnemieToTransport = false;
         }
         if(_spawnsList.Count == 0){
@@ -54,7 +56,7 @@ public class PetSpawnerController : MonoBehaviour
         }
     }
     void SendPetPosition(){
-        PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0].transform.position);
+        PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
         _spawnsList.RemoveAt(0);
     }
 }

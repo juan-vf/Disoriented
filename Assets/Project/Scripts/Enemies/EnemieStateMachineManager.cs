@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class EnemieStateMachineManager : MonoBehaviour
 {
+    [SerializeField] private string _currentStateString;
     private BaseState _currentState;
     private EnemieManager _enemieManager;
     
@@ -27,6 +28,7 @@ public class EnemieStateMachineManager : MonoBehaviour
 
     public void Update()
     {
+        _currentStateString = _currentState.ToString();
         _currentState.UpdateState(this);
     }
     public void SwitchState(BaseState nextState)
@@ -41,6 +43,9 @@ public class EnemieStateMachineManager : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         _currentState.OnTriggerEnter(other);
+    }
+    private void OnCollisionEnter(Collision other) {
+        _currentState.OnCollisionEnter(other);
     }
 
     public void Exit()

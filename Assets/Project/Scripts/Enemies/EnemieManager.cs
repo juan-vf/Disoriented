@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemieManager : MonoBehaviour
 {
-    public Transform pointA;
     public Transform _carriage;
-
     public Transform _hands;
-
     private bool holdingPet = false;
     private NavMeshController _enemieNavMeshController;
     private FieldOfView _fieldOfView;
@@ -31,21 +29,18 @@ public class EnemieManager : MonoBehaviour
     void HiddenUpdates(bool hidden){
         _playerIsHidden = hidden;
     }
-    public void grabPet(){
+    public void GrabPet(GameObject pet){
+        GameObject petIns =  Instantiate(pet, _hands.position, Quaternion.identity, _hands);
+        Rigidbody rb = petIns.GetComponent<Rigidbody>();
+        Destroy(rb);
         holdingPet = true;
-        ChestEventSystem.current.GrabPet();
-        // Debug.Log("agarra mascota");
     }
-    private void instanciatePet(GameObject prefab){
-        GameObject var =  Instantiate(prefab, _hands.position, Quaternion.identity, transform);
-        Destroy(var, 5);
-    }
-    public void dropPet(){
+    public void DropPet(){
+        if(!_hands.GetChild(0).gameObject){return;}
+        Destroy(_hands.GetChild(0).gameObject);
         holdingPet = false;
-        // Debug.Log("suelta mascota");
     }
     public bool GetHoldingPet{get{return holdingPet;}}
-    public Transform GetPointA{get{return pointA;}}
     public Transform GetCarriage{get{return _carriage;}}
     public NavMeshController GetNavMeshController{get{return _enemieNavMeshController;}}
     public FieldOfView GetFieldOfView{get{return _fieldOfView;}}

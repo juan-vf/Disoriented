@@ -17,13 +17,15 @@ public class PetEventsManager : MonoBehaviour
     public event Action<bool> onBackPackFull;
     public event Action onCallEnemieToTransport;
     public event Action<int> onEnemyGrab;
-    public event Action<Vector3> onEnemyGoToPet;
+    public event Action<GameObject, int> onEnemyGoToPet;
     public event Action onEnemyRequestPet;
+    public event Action<int> onDestroyPetById;
     public void GrabPet(){onGrabPet?.Invoke();}
     public void SendPetData(int id){onSendPetData?.Invoke(id);}
     public void BackPackFull(bool isFull){onBackPackFull?.Invoke(isFull);}
     public void CallEnemieToTransport(){onCallEnemieToTransport?.Invoke();}
     public void EnemyGrab(int serialId){onEnemyGrab?.Invoke(serialId);}
-    public void EnemyGoToPet(Vector3 petPosition){onEnemyGoToPet?.Invoke(petPosition);}
+    public void EnemyGoToPet(GameObject pet, int id){onEnemyGoToPet?.Invoke(pet, id);}
     public void EnemyRequestPet(){onEnemyRequestPet?.Invoke();}
+    public void DestroyPetById(int id){onDestroyPetById?.Invoke(id);}
 }
