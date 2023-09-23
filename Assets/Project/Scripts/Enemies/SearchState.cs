@@ -62,5 +62,9 @@ public class SearchState : BaseState
         result = Vector3.zero;
         return false;
     }
-    
+
+    public override void OnCollisionEnter(Collision other)
+    {
+        throw new System.NotImplementedException();
+    }
 }

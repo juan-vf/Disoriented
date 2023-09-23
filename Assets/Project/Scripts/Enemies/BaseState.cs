@@ -7,5 +7,6 @@ public abstract class BaseState
     public abstract void UpdateState(EnemieStateMachineManager enemieStateMachineManager);
     public abstract void ExitState(EnemieStateMachineManager enemieStateMachineManager);
     public abstract void OnTriggerEnter(Collider other);
+    public abstract void OnCollisionEnter(Collision other);
 
 }

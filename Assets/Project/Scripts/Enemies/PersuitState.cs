@@ -17,6 +17,12 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
         public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
         {
         }
+
+        public override void OnCollisionEnter(Collision other)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void OnTriggerEnter(Collider other)
         {
         }

@@ -36,4 +36,5 @@ public class PetController : MonoBehaviour
     }
     public int GetId{get{return _id;} set{_id = value;}}
     public int GetSerialId{get{return _serialId;} set{_serialId = value;}}
+    public Pet GetPet{get{return _pet;}}
 }

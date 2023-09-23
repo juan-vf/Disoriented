@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7318590182845900959}
   m_Layer: 0
   m_Name: Enemie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointA: {fileID: 0}
-  pointB: {fileID: 0}
+  _carriage: {fileID: 0}
   _hands: {fileID: 3831416621105066708}
 --- !u!114 &3010942942067240827
 MonoBehaviour:
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5cc8632d3f2ee488f32a9e5b6250cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentStateString: 
 --- !u!114 &8571764628222533282
 MonoBehaviour:
   m_ObjectHideFlags: 0

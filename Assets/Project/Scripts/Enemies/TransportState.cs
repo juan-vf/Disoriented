@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TransportState : BaseState
 {
     private List<int> _petsSerialsIds;
     private Vector3 _nextPetPosition;
+    private int _actualPetId;
+    private EnemieManager _enemieManager;
+    private GameObject _actualPet;
     public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
     {
         PetEventsManager.GetCurrent.onEnemyGoToPet += GotoPet;
@@ -17,62 +21,34 @@ public class TransportState : BaseState
 
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Carriage"){
-            //LANZAR EVENTO ENEMYREQUEST
-            Debug.Log("LLEGO A LA CARROZA");
+        if (other.gameObject.tag == "Carriage")
+        {
+            _enemieManager.DropPet();
+            PetEventsManager.GetCurrent.EnemyRequestPet();
         }
+        
     }
-
-    // private EnemieManager _enemieManager;
-    // private NavMeshController _navMeshController;
-    // private FieldOfView _fOV;
-    // private bool _isHoldingPet;
 
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
     {
-        var _enemieManager = enemieStateMachineManager.GetEnemieManager;
+        _enemieManager = enemieStateMachineManager.GetEnemieManager;
         var _navMeshController = _enemieManager.GetNavMeshController;
         var _isHoldingPet = _enemieManager.GetHoldingPet;
-        var _fOV = _enemieManager.GetFieldOfView;
-        // TRASPORT PETS LOGIC
-        /*
+        var _fOV = _enemieManager.GetFieldOfView; 
+        //TRANSPORT LOGIC WITH EVENTS
         if (_isHoldingPet)
         {
-            // Debug.Log("Is Holding Pet: " + _isHoldingPet);
-            _navMeshController.NavMeshGo();
-            _navMeshController.UpdateTargetDir(_enemieManager.GetPointB.position);
-
-            if (_navMeshController.IsArrived())
-            {
-                _enemieManager.dropPet();
-            }
-        }
-        else
-        {
-            _navMeshController.UpdateTargetDir(_enemieManager.GetPointA.position);
-        }
-        */
-        /*
-        if (_navMeshController.IsArrived() && !_isHoldingPet)
-        {
-            _navMeshController.NavMeshStop();
-            _enemieManager.grabPet();
-        }
-        */
-
-        //NEW TRANSPORT LOGIC WITH EVENTS
-        if(_isHoldingPet){
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
             //EN EL TRIGGER ENTER CONTROLLAR QUE SI CHOCA A LA CARROZA O USAR EL IF PARA QUE SUELTE LA CARROZA
-            /*if (_navMeshController.IsArrived())
+        }
+        else
+        {
+            if (_nextPetPosition.Equals(Vector3.zero))
             {
-                _enemieManager.dropPet();
-                //LANZAR EVENTO ENEMYREQUEST
-            }*/
-
-        }else if(_nextPetPosition != Vector3.zero){
+                PetEventsManager.GetCurrent.EnemyRequestPet();
+            }
             _navMeshController.UpdateTargetDir(_nextPetPosition);
         }
         //--------------------------()----------------------------
@@ -87,14 +63,27 @@ public class TransportState : BaseState
         }
     }
 
-    void UpdatePetsSerialsIdList(List<GameObject> pets){
+    void UpdatePetsSerialsIdList(List<GameObject> pets)
+    {
         foreach (var pet in pets)
         {
             _petsSerialsIds.Add(pet.GetComponent<PetController>().GetSerialId);
         }
     }
-    void GotoPet(Vector3 petPosition){
-        _nextPetPosition = petPosition;
+    void GotoPet(GameObject pet, int id)
+    {
+        _nextPetPosition = pet.transform.position;
+        _actualPetId = id;
+        _actualPet = pet;
     }
 
+    public override void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Pet")){
+            if(other != null){
+                PetEventsManager.GetCurrent.DestroyPetById(_actualPetId);
+                _enemieManager.GrabPet(_actualPet);
+            }
+        }
+    }
 }

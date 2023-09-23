@@ -12,6 +12,7 @@ public class UnCollectedPet : MonoBehaviour
 
         _petController = GetComponent<PetController>();
         PetEventsManager.GetCurrent.onBackPackFull += BackPackUpdates;
+        PetEventsManager.GetCurrent.onDestroyPetById += PickedUpByEnemy;
         // PetEventsManager.GetCurrent.onGrabPet += Picked;
     }
     private void Update() {
@@ -21,10 +22,6 @@ public class UnCollectedPet : MonoBehaviour
         if(tag && PlayerInputManager.getCurrent.getIsPickedUp && _enabledToCollect){
             Picked();
         }
-        if(other.gameObject.tag == "Enemy"){
-            PetEventsManager.GetCurrent.EnemyGrab(_petController.GetSerialId);
-            Destroy(gameObject);
-        }
     }
     private void Picked(){
         PetEventsManager.GetCurrent.SendPetData(_petController.GetId);
@@ -32,6 +29,9 @@ public class UnCollectedPet : MonoBehaviour
     }
     private void BackPackUpdates(bool value){
         _enabledToCollect = value;
+    }
+    void PickedUpByEnemy(int id){
+        if(_petController.GetSerialId == id){Destroy(gameObject);}
     }
     public bool GetIsPickedUp{get{return _isPicked;}}
 }

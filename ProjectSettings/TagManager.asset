@@ -8,6 +8,8 @@ TagManager:
   - Tree
   - Pet
   - iaBake
+  - Enemy
+  - Carriage
   layers:
   - Default
   - TransparentFX

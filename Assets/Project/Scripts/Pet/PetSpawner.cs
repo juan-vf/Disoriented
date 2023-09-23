@@ -15,16 +15,30 @@ public class PetSpawner : MonoBehaviour
     private void Start() {
     }
     public void Spawn() {
+        List<int> SerialIds = new List<int>();
         while(_spawnsList.Count < _maxSpawnsPets){
             GameObject spawn = Instantiate(_prefab, _center, Quaternion.identity);
             int randomId = (int)Random.Range(1f, PetsList.GetCurrent.GetCount + 1);
+            int randomSerialId = RandomSerialId(SerialIds);
             spawn.GetComponent<PetController>().GetId = randomId;
+            spawn.GetComponent<PetController>().GetSerialId = randomSerialId;
             _spawnsList.Add(spawn);
 
             spawn.transform.position = _center + Random.insideUnitSphere * _range;
             spawn.transform.position = new Vector3(spawn.transform.position.x, Random.Range(_minHeight, _maxHeight), spawn.transform.position.z);
         }
     }
+int RandomSerialId(List<int> ints)
+{
+    int id = 0;
+    do
+    {
+        id = (int)Random.Range(0, _maxSpawnsPets);
+    } while (ints.Contains(id));
+    ints.Add(id);
+    return id;
+}
+
 
     public void Destroy()
     {
