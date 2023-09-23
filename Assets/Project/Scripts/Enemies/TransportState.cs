@@ -23,11 +23,6 @@ public class TransportState : BaseState
         }
     }
 
-    // private EnemieManager _enemieManager;
-    // private NavMeshController _navMeshController;
-    // private FieldOfView _fOV;
-    // private bool _isHoldingPet;
-
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
     {
         var _enemieManager = enemieStateMachineManager.GetEnemieManager;
@@ -72,7 +67,7 @@ public class TransportState : BaseState
                 //LANZAR EVENTO ENEMYREQUEST
             }*/
 
-        }else if(_nextPetPosition != Vector3.zero){
+        }else{
             _navMeshController.UpdateTargetDir(_nextPetPosition);
         }
         //--------------------------()----------------------------
