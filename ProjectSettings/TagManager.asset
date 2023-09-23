@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Tree
   - Pet
+  - iaBake
+  - Enemy
+  - Carriage
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Pet
-  - 
+  - IABake
   - 
   - 
   - 
