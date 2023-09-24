@@ -31,6 +31,7 @@ public class UnCollectedPet : MonoBehaviour
         _enabledToCollect = value;
     }
     void PickedUpByEnemy(int id){
+        if(this == null){return;}
         if(_petController.GetSerialId == id){Destroy(gameObject);}
     }
     public bool GetIsPickedUp{get{return _isPicked;}}

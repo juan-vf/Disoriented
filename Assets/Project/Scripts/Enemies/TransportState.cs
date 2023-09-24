@@ -37,13 +37,11 @@ public class TransportState : BaseState
         //TRANSPORT LOGIC WITH EVENTS
         if (_isHoldingPet)
         {
-            Debug.Log("TENGO ALGO EN LA MANO");
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
 
             if(_navMeshController.IsArrived()){
-                Debug.Log("LLEGO A LA CARROZA");
                 _enemieManager.DropPet();
                 PetEventsManager.GetCurrent.EnemyRequestPet();
             }
@@ -55,28 +53,22 @@ public class TransportState : BaseState
             {
                 PetEventsManager.GetCurrent.EnemyRequestPet();
             }
-            Debug.Log("NO TENGO NADA EN LA MANO");
             _navMeshController.UpdateTargetDir(_nextPetPosition);
         }
         //--------------------------()----------------------------
         //CHANGE STATES LOGIC
         if (_fOV.WatchingPlayer && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
+            Debug.Log("VEO AL JUGADOR(TRANSPORT STATE)");
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.getPersuitState);
         }
         if (_fOV.InRange && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
+            Debug.Log("EL JUGADOR ESTA CERCA(TRANSPORT STATE)");
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
         }
     }
 
-    void UpdatePetsSerialsIdList(List<GameObject> pets)
-    {
-        foreach (var pet in pets)
-        {
-            _petsSerialsIds.Add(pet.GetComponent<PetController>().GetSerialId);
-        }
-    }
     void GotoPet(GameObject pet, int id)
     {
         _nextPetPosition = pet.transform.position;
