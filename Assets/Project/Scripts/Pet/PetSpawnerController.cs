@@ -56,6 +56,10 @@ public class PetSpawnerController : MonoBehaviour
         }
     }
     void SendPetPosition(){
+        if(_spawnsList.Count == 0){
+            return;
+            //ACA YA NO HAY MASCOTAS PARA RECOGER
+        }
         PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
         _spawnsList.RemoveAt(0);
     }

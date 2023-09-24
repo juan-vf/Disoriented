@@ -26,7 +26,6 @@ public class TransportState : BaseState
             _enemieManager.DropPet();
             PetEventsManager.GetCurrent.EnemyRequestPet();
         }
-        
     }
 
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
@@ -38,9 +37,16 @@ public class TransportState : BaseState
         //TRANSPORT LOGIC WITH EVENTS
         if (_isHoldingPet)
         {
+            Debug.Log("TENGO ALGO EN LA MANO");
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
+
+            if(_navMeshController.IsArrived()){
+                Debug.Log("LLEGO A LA CARROZA");
+                _enemieManager.DropPet();
+                PetEventsManager.GetCurrent.EnemyRequestPet();
+            }
             //EN EL TRIGGER ENTER CONTROLLAR QUE SI CHOCA A LA CARROZA O USAR EL IF PARA QUE SUELTE LA CARROZA
         }
         else
@@ -49,6 +55,7 @@ public class TransportState : BaseState
             {
                 PetEventsManager.GetCurrent.EnemyRequestPet();
             }
+            Debug.Log("NO TENGO NADA EN LA MANO");
             _navMeshController.UpdateTargetDir(_nextPetPosition);
         }
         //--------------------------()----------------------------
