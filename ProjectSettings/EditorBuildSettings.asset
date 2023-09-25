@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scenes/CameraTest.unity
-    guid: 11406480225be754fbdcb698e3f189a4
+    path: Assets/Project/Scenes/MenusScenes/MainMenu.unity
+    guid: 6ec9f57215c709d469a85374d0ef8fc5
+  - enabled: 1
+    path: Assets/Project/Scenes/MenusScenes/Options.unity
+    guid: f27f38e1ded85fc42be725ab9606b5f0
+  - enabled: 1
+    path: Assets/Project/Scenes/MenusScenes/Credits.unity
+    guid: 9aae1b9abd84b084bb9d816e0aa2ea79
+  - enabled: 1
+    path: Assets/Project/Scenes/Levels/Lvl01.unity
+    guid: 4c09300b080cc7b47af2eb745de36217
+  - enabled: 1
+    path: Assets/Project/Scenes/MenusScenes/WinLevel.unity
+    guid: 28d74a29bb9702c49a422078897facbc
   m_configObjects: {}
