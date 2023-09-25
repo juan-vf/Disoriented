@@ -103,9 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93028710cb1efbc4895a55eb76767909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {fileID: 0}
   _carriage: {fileID: 0}
   _hands: {fileID: 3831416621105066708}
+  holdingPet: 0
 --- !u!114 &3010942942067240827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,12 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779d4e162d2820e4b86103b40928c3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dstVision: 35
-  m_angleVision: 180
+  m_dstVision: 15
+  m_angleVision: 26
   target: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   targetsVisibles: []
 --- !u!195 &3475784652329060625
 NavMeshAgent:
@@ -148,7 +148,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.68
-  m_Speed: 15
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
