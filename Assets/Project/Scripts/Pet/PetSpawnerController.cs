@@ -29,6 +29,10 @@ public class PetSpawnerController : MonoBehaviour
 
         _petSpawner.Spawn();
         _spawnsList = _petSpawner.GetSpawnList;
+      
+        //Enviamos
+
+        CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
 
         PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
         // PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
@@ -62,5 +66,11 @@ public class PetSpawnerController : MonoBehaviour
         }
         PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
         _spawnsList.RemoveAt(0);
+        // Actualiza los elementos dentro de la lista
+        CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
+        
+
+
     }
+
 }
