@@ -18,4 +18,8 @@ public class CarriageFullState : CarriageBaseState
     {
 
     }
+    public override void OnCollisionEnter(Collision other)
+    {
+        throw new System.NotImplementedException();
+    }
 }

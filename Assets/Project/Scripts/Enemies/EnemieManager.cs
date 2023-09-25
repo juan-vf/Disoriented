@@ -37,6 +37,7 @@ public class EnemieManager : MonoBehaviour
     }
     public void DropPet(){
         if(!_hands.GetChild(0).gameObject){return;}
+        CarriageEventController.GetCurrent.AddPet(_hands.GetChild(0).gameObject.GetComponent<PetController>().GetId);
         Destroy(_hands.GetChild(0).gameObject);
         holdingPet = false;
     }

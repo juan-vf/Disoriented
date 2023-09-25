@@ -20,6 +20,7 @@ public class PetEventsManager : MonoBehaviour
     public event Action<GameObject, int> onEnemyGoToPet;
     public event Action onEnemyRequestPet;
     public event Action<int> onDestroyPetById;
+    
     public void GrabPet(){onGrabPet?.Invoke();}
     public void SendPetData(int id){onSendPetData?.Invoke(id);}
     public void BackPackFull(bool isFull){onBackPackFull?.Invoke(isFull);}
@@ -28,4 +29,5 @@ public class PetEventsManager : MonoBehaviour
     public void EnemyGoToPet(GameObject pet, int id){onEnemyGoToPet?.Invoke(pet, id);}
     public void EnemyRequestPet(){onEnemyRequestPet?.Invoke();}
     public void DestroyPetById(int id){onDestroyPetById?.Invoke(id);}
+
 }

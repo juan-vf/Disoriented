@@ -6,5 +6,6 @@ public abstract class CarriageBaseState
     public abstract void UpdateState(CarriageStateManager carriage);
     public abstract void ExitState(CarriageStateManager carriage);
     public abstract void OnTriggerEnter(Collider other);
+    public abstract void OnCollisionEnter(Collision other);
 
 }
