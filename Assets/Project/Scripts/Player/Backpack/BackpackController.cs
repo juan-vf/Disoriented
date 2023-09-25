@@ -22,7 +22,7 @@ public class BackpackController : MonoBehaviour
     }
     public void AddPet(int id){
         _petsCollecteds++;
-        if(_petsCollecteds > _sizeBackpack){return;}
+        if(_petsCollecteds >= _sizeBackpack){SceneEventController.GetCurrent.LoadWinScene(); Debug.Log("Se envio el evento"); return;}
         if(!PlayerInputManager.getCurrent.getIsPickedUp){return;}
         Pet pet = PetsList.GetCurrent.GetPetById(id);
         GeneratePet(pet);

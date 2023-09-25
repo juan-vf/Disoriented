@@ -28,6 +28,9 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
                 SE PODRIA LANZAR UN EVENTO PARA QUE EJECUTE LA ANIMACION QUE LOS ATRAPA AL PLAYER
             */
             Debug.Log("ATRAPE AL JUGADOR");
+            if(other.gameObject.CompareTag("Player")){
+                SceneEventController.GetCurrent.LoadLooseScene();
+            }
         }
 
         public override void OnTriggerEnter(Collider other)

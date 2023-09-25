@@ -25,7 +25,7 @@ public class CarriageDefaultState : CarriageBaseState
     }
     public override void UpdateState(CarriageStateManager carriage)
     {
-
+        Debug.Log(_maxPetCountSpawned);
         if (petCount >= 0.70 * _maxPetCountSpawned)
         {
             

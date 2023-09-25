@@ -23,14 +23,14 @@ public class FieldOfView : MonoBehaviour
 
         Color color = new Color(1, 0, 0, 0.2f);
 
-        Handles.color = color;
-        Handles.DrawSolidArc(
-            transform.position,
-            transform.up,
-            Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
-            m_angleVision,
-            m_dstVision
-        );
+        // Handles.color = color;
+        // Handles.DrawSolidArc(
+        //     transform.position,
+        //     transform.up,
+        //     Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
+        //     m_angleVision,
+        //     m_dstVision
+        // );
 
     }
     public void Detected(

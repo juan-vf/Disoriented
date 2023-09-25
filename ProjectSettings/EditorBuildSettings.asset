@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/MenusScenes/Credits.unity
     guid: 9aae1b9abd84b084bb9d816e0aa2ea79
   - enabled: 1
-    path: Assets/Project/Scenes/Levels/Lvl01.unity
-    guid: 4c09300b080cc7b47af2eb745de36217
-  - enabled: 1
     path: Assets/Project/Scenes/MenusScenes/WinLevel.unity
     guid: 28d74a29bb9702c49a422078897facbc
+  - enabled: 1
+    path: Assets/Project/Scenes/Levels/Level01.unity
+    guid: a82ea123e91d60c46a0b02ec26fb525e
+  - enabled: 1
+    path: Assets/Project/Scenes/MenusScenes/LevelOver.unity
+    guid: f5e140fd78a78aa4fa4bb03731d24cf4
   m_configObjects: {}

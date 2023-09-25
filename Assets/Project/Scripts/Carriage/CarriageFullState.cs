@@ -4,7 +4,7 @@ public class CarriageFullState : CarriageBaseState
 {
     public override void EnterState(CarriageStateManager carriage)
     {
-
+        SceneEventController.GetCurrent.LoadLooseScene();
     }
     public override void ExitState(CarriageStateManager carriage)
     {

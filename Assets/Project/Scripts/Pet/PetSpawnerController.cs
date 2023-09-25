@@ -64,10 +64,16 @@ public class PetSpawnerController : MonoBehaviour
             return;
             //ACA YA NO HAY MASCOTAS PARA RECOGER
         }
+        if(_spawnsList[0] == null){
+            CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
+            PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[1], _spawnsList[1].GetComponent<PetController>().GetSerialId);
+            _spawnsList.RemoveAt(1);
+            return;
+        }
+        CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
         PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
         _spawnsList.RemoveAt(0);
         // Actualiza los elementos dentro de la lista
-        CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
         
 
 
