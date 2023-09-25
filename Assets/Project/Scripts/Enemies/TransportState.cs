@@ -26,7 +26,6 @@ public class TransportState : BaseState
             _enemieManager.DropPet();
             PetEventsManager.GetCurrent.EnemyRequestPet();
         }
-        
     }
 
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
@@ -41,6 +40,11 @@ public class TransportState : BaseState
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
+
+            if(_navMeshController.IsArrived()){
+                _enemieManager.DropPet();
+                PetEventsManager.GetCurrent.EnemyRequestPet();
+            }
             //EN EL TRIGGER ENTER CONTROLLAR QUE SI CHOCA A LA CARROZA O USAR EL IF PARA QUE SUELTE LA CARROZA
         }
         else
@@ -55,21 +59,16 @@ public class TransportState : BaseState
         //CHANGE STATES LOGIC
         if (_fOV.WatchingPlayer && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
+            Debug.Log("VEO AL JUGADOR(TRANSPORT STATE)");
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.getPersuitState);
         }
         if (_fOV.InRange && !enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden)
         {
+            Debug.Log("EL JUGADOR ESTA CERCA(TRANSPORT STATE)");
             enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
         }
     }
 
-    void UpdatePetsSerialsIdList(List<GameObject> pets)
-    {
-        foreach (var pet in pets)
-        {
-            _petsSerialsIds.Add(pet.GetComponent<PetController>().GetSerialId);
-        }
-    }
     void GotoPet(GameObject pet, int id)
     {
         _nextPetPosition = pet.transform.position;

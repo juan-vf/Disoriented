@@ -8,10 +8,10 @@ public class EnemieManager : MonoBehaviour
 {
     public Transform _carriage;
     public Transform _hands;
-    private bool holdingPet = false;
+    [SerializeField]private bool holdingPet = false;
     private NavMeshController _enemieNavMeshController;
     private FieldOfView _fieldOfView;
-    private bool _playerIsHidden;
+    private bool _playerIsHidden = false;
     // Start is called before the first frame update
     void Start()
     {

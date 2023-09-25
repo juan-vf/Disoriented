@@ -8,9 +8,12 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
 {
     public class PersuitState : BaseState
     {
+        private float _timeNoSeeingPlayer;
+        private float _maxTimeNoSeeingPlayer = 10f;
         private NavMeshController _navMeshController;
         public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
         {
+            _timeNoSeeingPlayer = 0f;
             Debug.Log("persuit state");
             
         }
@@ -20,7 +23,11 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
 
         public override void OnCollisionEnter(Collision other)
         {
-            throw new NotImplementedException();
+            //ACA COLLISIONO/ALCANZO AL JUGADOR
+            /*
+                SE PODRIA LANZAR UN EVENTO PARA QUE EJECUTE LA ANIMACION QUE LOS ATRAPA AL PLAYER
+            */
+            Debug.Log("ATRAPE AL JUGADOR");
         }
 
         public override void OnTriggerEnter(Collider other)
@@ -30,14 +37,23 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
         {
             var _navMeshController = enemieStateMachineManager.GetEnemieManager.GetNavMeshController;
             var fOV = enemieStateMachineManager.GetEnemieManager.GetFieldOfView;
-            _navMeshController.setTarget(fOV.target);
-            _navMeshController.PursueTarget();
+            
+
             if(enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden){
+                Debug.Log("SE ESCONDIO");
+                //PENSAR LOGICA PARA QUE CUANDO SE ESCONDA Y AUN ESTE CERCA QUE LO AGARRE IGUAL (PUEDE SER DEPENDIENDO LA DISTANCIA, SI HABIA)
+                enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
+            }
+            if(_timeNoSeeingPlayer >= _maxTimeNoSeeingPlayer){
                 enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
             }
             if(!fOV.WatchingPlayer){
-                enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
+                _timeNoSeeingPlayer += Time.deltaTime;
             }
+            
+            //DESIGNA LA POSICION DEL OBJETIVO Y LO PERSIGUE
+            _navMeshController.setTarget(fOV.target);
+            _navMeshController.PursueTarget();
         }
     }
 }
