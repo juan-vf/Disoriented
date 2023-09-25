@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NoahJumpState : NoahBaseState
 {
-    private float _jumpSpeed = 3f;
+    private float _jumpSpeed = 5f;
     private float _jumpCount = 0f;
     private float _maxRayDistanceToClimb = 1f;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
