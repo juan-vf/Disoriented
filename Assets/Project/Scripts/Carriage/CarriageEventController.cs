@@ -13,12 +13,23 @@ public class CarriageEventController : MonoBehaviour
     }
 
     public event Action onChangeFullState;
+    public event Action<int> onAddPet;
+    public event Action<int> onUpdateMaxCountCarriage;
 
     public void ChangeFullState()
     {
         onChangeFullState?.Invoke();
     }
+    public void AddPet(int id)
+    { 
+        onAddPet?.Invoke(id);
+    }
+    public void UpdateMaxCountCarriage(int count)
+    {
+        onUpdateMaxCountCarriage?.Invoke(count);
+    }
+    
 
-
-    public static CarriageEventController GetCurrent { get { return _current; }  }
+    public static CarriageEventController GetCurrent { get { return _current; } }
+    
 }
