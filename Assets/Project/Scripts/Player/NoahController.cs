@@ -32,6 +32,7 @@ public class NoahController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(_rb.transform.position + Vector3.up * .1f, _rb.transform.forward, Color.red);
 
         _isFinishClimbing = _climbComponent.getFinishClimbing;
         //ANALIZAR CUANDO ESTE SALTANDO
@@ -58,6 +59,16 @@ public class NoahController : MonoBehaviour
     void HiddenUpdates(bool value){
         _hide = value;
     }
+    // private void OnCollisionEnter(Collision other) {
+    //     if(other.gameObject.CompareTag("Tree")){
+    //         _climbComponent.getFinishClimbing = true;
+    //     }
+    // }
+    // private void OnCollisionExit(Collision other) {
+    //     if(other.gameObject.CompareTag("Tree")){
+    //         _climbComponent.getFinishClimbing = false;
+    //     }
+    // }
     /*
     bool Collect()
     {

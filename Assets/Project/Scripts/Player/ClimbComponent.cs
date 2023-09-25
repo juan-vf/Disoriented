@@ -37,16 +37,19 @@ public class ClimbComponent : CharacterBaseComponent
         if (Physics.Raycast(_rb.transform.position, -checkDirection, out hit))
         {
             _finishClimbing = false;
-            float dot = Vector3.Dot(_rb.transform.forward, -hit.normal);
-
-            _rb.position = Vector3.Lerp(_rb.position,
-                                        hit.point + hit.normal * 0.3f,
-                                        5f * Time.fixedDeltaTime);
-            _rb.transform.forward = Vector3.Lerp(
+            // // float dot = Vector3.Dot(_rb.transform.forward, -hit.normal);
+            // Debug.Log(hit.normal + "" + hit.point);
+            // float sum = _rb.position.y + hit.point.y;
+            // Vector3 ac = new Vector3(_rb.position.x, -sum, _rb.position.z);
+            _rb.position = Vector3.Lerp(_rb.transform.position,
+                                        hit.point + hit.normal * 0.51f,
+                                        10f * Time.fixedDeltaTime);
+            _rb.transform.forward = -hit.normal;
+            /*Vector3.Lerp(
                                             _rb.transform.forward,
                                             -hit.normal,
                                             10f * Time.fixedDeltaTime
-                                            );
+                                            );*/
             // rb.useGravity = false;
             _rb.velocity = _rb.transform.TransformDirection(input) * _climbSpeed;
             if (PlayerInputManager.getCurrent.getIsJumping)
@@ -55,13 +58,12 @@ public class ClimbComponent : CharacterBaseComponent
                 _jumping = PlayerInputManager.getCurrent.getIsJumping;
             }
         }else{
-            Debug.Log("Aquiii");
             _rb.velocity = Vector3.up;
             _finishClimbing = true;
         }
 
     }
-    public bool getFinishClimbing{get{return _finishClimbing;}}
+    public bool getFinishClimbing{get{return _finishClimbing;} set{_finishClimbing = value;}}
     public override void Process()
     {
         throw new System.NotImplementedException();

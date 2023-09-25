@@ -28,25 +28,28 @@ public class NoahDefaultState : NoahBaseState
     {
         Debug.Log("DefaultState");
         RaycastHit hit;
-        if(PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
-            noahStateMachineManager.GetRigidbody.transform.position, 
-            noahStateMachineManager.GetRigidbody.transform.forward, 
+        if (PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
+            noahStateMachineManager.GetRigidbody.transform.position,
+            noahStateMachineManager.GetRigidbody.transform.forward,
             out hit,
             _climbRaycastDistance
-            )){
-                Debug.Log("Preparado para escalar");
+            ))
+        {
+            Debug.Log("Preparado para escalar");
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);
         }
 
         RaycastHit hitJump;
-        if(PlayerInputManager.getCurrent.getIsJumping && Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
+        if (PlayerInputManager.getCurrent.getIsJumping && Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
                         Vector3.down,
                         out hitJump,
                         .1f
-                        )){
+                        ))
+        {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
         }
-        if(PlayerInputManager.getCurrent.getIsCrouched){
+        if (PlayerInputManager.getCurrent.getIsCrouched)
+        {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getCrouchState);
         }
     }
