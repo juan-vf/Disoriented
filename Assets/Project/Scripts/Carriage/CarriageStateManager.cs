@@ -19,7 +19,7 @@ public class CarriageStateManager : MonoBehaviour
     {
         _currentState = CarriageDefaultState;
         _currentState.EnterState(this);
-        GetComponent<MeshFilter>().transform.localRotation = Quaternion.Euler(-90, 0, 0);
+        // GetComponent<MeshFilter>().transform.localRotation = Quaternion.Euler(-90, 0, 0);
         //CarriageEventController.GetCurrent.onAddPet += addPet;
 
 
