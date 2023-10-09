@@ -43,7 +43,7 @@ public class NoahDefaultState : NoahBaseState
         if (PlayerInputManager.getCurrent.getIsJumping && Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
                         Vector3.down,
                         out hitJump,
-                        .1f
+                        .05f
                         ))
         {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);

@@ -13,11 +13,13 @@ public class NoahStateMachineManager : MonoBehaviour
     private PlayerInputManager _playerInputManager;
     private NoahController _noahController;
     private Rigidbody _rb;
+    private NoahAnimatorController _noahAnimatorController;
     void Start()
     {
         _noahController = GetComponent<NoahController>();
         _playerInputManager = PlayerInputManager.getCurrent;
         _rb = GetComponent<Rigidbody>();
+        _noahAnimatorController = GetComponent<NoahAnimatorController>();
         _currentState = _defaultState;
         _currentState.EnterState(this);
     }
@@ -45,4 +47,5 @@ public class NoahStateMachineManager : MonoBehaviour
     public NoahBaseState getCrouchState{get{return _crouchState;}}
     public NoahBaseState getCurrentState{get{return _currentState;}}
     public Rigidbody GetRigidbody{get{return _rb;}}
+    public NoahAnimatorController GetNoahAnimatorController{get{ return _noahAnimatorController;}}
 }

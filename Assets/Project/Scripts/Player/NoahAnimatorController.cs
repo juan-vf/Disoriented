@@ -5,17 +5,19 @@ using UnityEngine;
 public class NoahAnimatorController : MonoBehaviour
 {
     private Animator _animator;
-    private Movement _movement;
     private float _velocity = 0.0f;
     private float _acceleration = 0.1f;
     private float _deceleration = 0.5f;
     private int _velocityHash;
+    private int _isJumping;
+    private int _endJumping;
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _velocityHash = Animator.StringToHash("Velocity");
-        // _movement = GetComponent<Movement>();
+        _isJumping = Animator.StringToHash("IsJumping");
+        _endJumping = Animator.StringToHash("EndJumping");
     }
 
     // Update is called once per frame
@@ -31,5 +33,11 @@ public class NoahAnimatorController : MonoBehaviour
             _velocity = 0.0f;
         }
         _animator.SetFloat(_velocityHash, _velocity);
+    }
+    public void UpdateJumpBool(bool value){
+        _animator.SetBool(_isJumping, value);
+    }
+    public void EndJump(bool value){
+        _animator.SetBool(_endJumping, value);
     }
 }
