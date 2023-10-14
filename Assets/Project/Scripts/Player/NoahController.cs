@@ -17,6 +17,8 @@ public class NoahController : MonoBehaviour
     [SerializeField] private LayerMask _collectibleLayer;
     private bool _raycastForCollect;
     [SerializeField]private bool _hide;
+
+    private bool _onGround;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,11 +48,17 @@ public class NoahController : MonoBehaviour
             _movementComponent.Move(_movement);
         }
 
+        RaycastHit hit;
+        _onGround =  Physics.Raycast(_rb.transform.position,Vector3.down,out hit,.05f);
+
+        _noahStateMachineManager.GetNoahAnimatorController.OnGround(_onGround);
+
     }
     void HiddenUpdates(bool value){
         _hide = value;
     }
     public bool GetIsFinishClimbing { get { return _isFinishClimbing; } }
     public bool GetHide{get {return _hide;}}
+    public bool GetOnGround{get{return _onGround;}}
 
 }

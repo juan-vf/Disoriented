@@ -35,7 +35,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
     public void Jump(InputAction.CallbackContext callbackContext){
-        if(callbackContext.started){
+        if(callbackContext.started || callbackContext.performed){
             _IsJumping = true;
         }else if(callbackContext.canceled){
             _IsJumping = false;

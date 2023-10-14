@@ -12,8 +12,8 @@ public class NoahAnimatorController : MonoBehaviour
     private int _triggerJump;
     private int _onGround;
     private int _verticalVelocity;
+    private int _isCrouched;
     private int _endJumping;
-    private int _isCrouch;
     
     // Start is called before the first frame update
     void Start()
@@ -24,12 +24,12 @@ public class NoahAnimatorController : MonoBehaviour
         _triggerJump = Animator.StringToHash("Jump");
         _onGround = Animator.StringToHash("OnGround");
         _verticalVelocity = Animator.StringToHash("VerticalVelocity");
+        _isCrouched = Animator.StringToHash("IsCrouched");
 
         //Set Hash variables
         _animator.SetBool(_onGround, true);
 
         _endJumping = Animator.StringToHash("EndJumping");
-        _isCrouch = Animator.StringToHash("IsCrouch");
     }
 
     // Update is called once per frame
@@ -56,11 +56,11 @@ public class NoahAnimatorController : MonoBehaviour
     public void JumpVelocity(float velocity){
         _animator.SetFloat(_verticalVelocity, velocity);
     }
+    public void StartCrouch(bool value){
+        _animator.SetBool(_isCrouched, value);
+    }
 
     public void EndJump(bool value){
         _animator.SetBool(_endJumping, value);
-    }
-    public void StartCrouch(bool value){
-        _animator.SetBool(_isCrouch, value);
     }
 }

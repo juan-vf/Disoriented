@@ -21,6 +21,7 @@ public class CrouchState : NoahBaseState
         // noahStateMachineManager.transform.localScale = new Vector3(1f, .5f, 1f);
         _capsuleCollider.height = _height;
         // _capsuleCollider.center = _center;
+        noahStateMachineManager.GetNoahAnimatorController.StartCrouch(true);
     }
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)

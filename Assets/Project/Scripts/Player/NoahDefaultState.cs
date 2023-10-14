@@ -39,23 +39,9 @@ public class NoahDefaultState : NoahBaseState
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);
         }
 
-        RaycastHit hitJump;
-        if (PlayerInputManager.getCurrent.getIsJumping && Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
-                        Vector3.down,
-                        out hitJump,
-                        .05f
-                        ))
+        if (PlayerInputManager.getCurrent.getIsJumping && noahStateMachineManager.GetNoahController.GetOnGround)
         {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
-            noahStateMachineManager.GetNoahAnimatorController.Jump();
-            noahStateMachineManager.GetNoahAnimatorController.OnGround(false);
-        }
-        if(!Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
-                        Vector3.down,
-                        out hitJump,
-                        .05f
-                        )){
-                            noahStateMachineManager.GetNoahAnimatorController.OnGround(true);
         }
         if (PlayerInputManager.getCurrent.getIsCrouched)
         {
