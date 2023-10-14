@@ -47,6 +47,15 @@ public class NoahDefaultState : NoahBaseState
                         ))
         {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
+            noahStateMachineManager.GetNoahAnimatorController.Jump();
+            noahStateMachineManager.GetNoahAnimatorController.OnGround(false);
+        }
+        if(!Physics.Raycast(noahStateMachineManager.GetRigidbody.transform.position,
+                        Vector3.down,
+                        out hitJump,
+                        .05f
+                        )){
+                            noahStateMachineManager.GetNoahAnimatorController.OnGround(true);
         }
         if (PlayerInputManager.getCurrent.getIsCrouched)
         {
