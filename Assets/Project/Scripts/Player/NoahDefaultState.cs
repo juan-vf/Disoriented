@@ -35,7 +35,7 @@ public class NoahDefaultState : NoahBaseState
             noahStateMachineManager.GetRigidbody.transform.position + noahStateMachineManager.GetRigidbody.transform.TransformDirection(Vector2.up * 0.5f),
             noahStateMachineManager.GetRigidbody.transform.forward,
             out wallPoint,
-            1.3f))
+            .8f))
         {
             Debug.Log("Preparado para escalar");
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);

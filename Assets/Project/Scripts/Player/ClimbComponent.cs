@@ -16,6 +16,7 @@ public class ClimbComponent : CharacterBaseComponent
     public void Climb(Vector2 input)
     {
         _finishClimbing = false;
+        _climbSpeed = 1.5f;
         //LANZO RAYO PARA SABER LA NORMAL DE LA PARED
         RaycastHit wallPoint;
         // Physics.Raycast(
@@ -28,7 +29,7 @@ public class ClimbComponent : CharacterBaseComponent
             _rb.transform.position + _rb.transform.TransformDirection(Vector2.up * 0.5f),
             _rb.transform.forward,
             out wallPoint,
-            1.3f))
+            .8f))
         {
 
             _rb.transform.forward = -wallPoint.normal;
@@ -45,9 +46,9 @@ public class ClimbComponent : CharacterBaseComponent
         }else{
 
             Debug.Log("Ya llega");
-
-            _climbSpeed = 3f;
-            _rb.velocity = Vector3.up * 5f;
+            
+            _climbSpeed = 5f;
+            _rb.velocity = Vector3.up * 10f;
             _finishClimbing = true;
         }
         _rb.velocity = _rb.transform.TransformDirection(input.normalized * _climbSpeed);
