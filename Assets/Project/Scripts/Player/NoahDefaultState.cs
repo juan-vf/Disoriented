@@ -8,9 +8,10 @@ public class NoahDefaultState : NoahBaseState
     private Vector3 _movement;
     //VARIABLES GLOBALES PARA MOSTRAR Y MODIFICAR EN EL EDITOR, PARA TESTEAR
     private float _walkSpeed = 3f;
-    float _climbRaycastDistance = 1f;
+    float _climbRaycastDistance = .5f;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
+        noahStateMachineManager.GetNoahController.SetStandingCollider();
         // throw new System.NotImplementedException();
     }
 
@@ -26,14 +27,15 @@ public class NoahDefaultState : NoahBaseState
 
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
+        
         Debug.Log("DefaultState");
-        RaycastHit hit;
+        RaycastHit wallPoint;
+        
         if (PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(
-            noahStateMachineManager.GetRigidbody.transform.position,
+            noahStateMachineManager.GetRigidbody.transform.position + noahStateMachineManager.GetRigidbody.transform.TransformDirection(Vector2.up * 0.5f),
             noahStateMachineManager.GetRigidbody.transform.forward,
-            out hit,
-            _climbRaycastDistance
-            ))
+            out wallPoint,
+            1.3f))
         {
             Debug.Log("Preparado para escalar");
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahClimbState);

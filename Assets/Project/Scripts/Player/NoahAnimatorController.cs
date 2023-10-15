@@ -10,9 +10,13 @@ public class NoahAnimatorController : MonoBehaviour
     private float _deceleration = 0.5f;
     private int _velocityHash;
     private int _triggerJump;
+    private int _isJumping;
     private int _onGround;
     private int _verticalVelocity;
     private int _isCrouched;
+    private int _verticalClimb;
+    private int _horizontalClimb;
+    private int _isClimbing;
     private int _endJumping;
     
     // Start is called before the first frame update
@@ -25,6 +29,10 @@ public class NoahAnimatorController : MonoBehaviour
         _onGround = Animator.StringToHash("OnGround");
         _verticalVelocity = Animator.StringToHash("VerticalVelocity");
         _isCrouched = Animator.StringToHash("IsCrouched");
+        _isJumping = Animator.StringToHash("IsJumping");
+        _verticalClimb = Animator.StringToHash("VerticalClimb");
+        _horizontalClimb = Animator.StringToHash("HorizontalClimb");
+        _isClimbing = Animator.StringToHash("IsClimbing");
 
         //Set Hash variables
         _animator.SetBool(_onGround, true);
@@ -47,7 +55,8 @@ public class NoahAnimatorController : MonoBehaviour
 
         _animator.SetFloat(_velocityHash, _velocity);
     }
-    public void Jump(){
+    public void Jump(bool value){
+        // _animator.SetBool(_isJumping, value);
         _animator.SetTrigger(_triggerJump);
     }
     public void OnGround(bool value){
@@ -56,11 +65,19 @@ public class NoahAnimatorController : MonoBehaviour
     public void JumpVelocity(float velocity){
         _animator.SetFloat(_verticalVelocity, velocity);
     }
-    public void StartCrouch(bool value){
+    public void Crouch(bool value){
         _animator.SetBool(_isCrouched, value);
+    }
+    public void ClimbFloats(float vertical, float horizontal){
+        _animator.SetFloat(_verticalClimb, vertical);
+        _animator.SetFloat(_horizontalClimb, horizontal);
+    }
+    public void IsClimbing(bool value){
+        _animator.SetBool(_isClimbing, value);
     }
 
     public void EndJump(bool value){
         _animator.SetBool(_endJumping, value);
     }
+
 }

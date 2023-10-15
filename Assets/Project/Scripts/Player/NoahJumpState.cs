@@ -11,13 +11,14 @@ public class NoahJumpState : NoahBaseState
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
         Debug.Log("ENTER SALTO");
-        noahStateMachineManager.GetNoahAnimatorController.Jump();
+        noahStateMachineManager.GetNoahAnimatorController.Jump(true);
         Jump(noahStateMachineManager.GetRigidbody);
         noahStateMachineManager.GetNoahAnimatorController.OnGround(false);
     }
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)
     {
+         noahStateMachineManager.GetNoahAnimatorController.Jump(false);
         Debug.Log("EXIT SALTO");
     }
 
@@ -28,7 +29,6 @@ public class NoahJumpState : NoahBaseState
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
         Debug.Log("NoahJumpState");
-        RaycastHit hit;
         if (noahStateMachineManager.GetNoahController.GetOnGround)
         {
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahDefaultState);

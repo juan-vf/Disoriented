@@ -5,41 +5,36 @@ using UnityEngine;
 public class NoahClimbState : NoahBaseState
 {
     private Vector2 _climbMovement;
-    private float _climbSpeed = 3f;
+    private float _climbSpeed = 2f;
     private bool _jumping = false;
     private bool _finishClimbing = false;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
+        noahStateMachineManager.GetNoahAnimatorController.IsClimbing(true);
         _jumping = false;
         _finishClimbing = false;
-        // noahStateMachineManager.GetRigidbody.useGravity = false;
     }
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)
     {
-        // throw new System.NotImplementedException();
+        noahStateMachineManager.GetNoahAnimatorController.IsClimbing(false);
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
-        // _climbMovement = new Vector2(PlayerInputManager.getCurrent.getMove.x, PlayerInputManager.getCurrent.getMove.y).normalized;
-        // noahStateMachineManager.GetRigidbody.useGravity = false;
-        // Climb(_climbMovement, noahStateMachineManager.GetRigidbody);
-        // if (PlayerInputManager.getCurrent.getIsJumping)
-        //     {
-        //         _jumping = PlayerInputManager.getCurrent.getIsJumping;
-        //     }
+        Debug.Log("Climb State");
         if(PlayerInputManager.getCurrent.getIsJumping){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getJumpState);
         }
         if(noahStateMachineManager.GetNoahController.GetIsFinishClimbing){
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahDefaultState);
         }
+        Vector2 climbInput = noahStateMachineManager.GetNoahController.GetClimbMovement;
+        noahStateMachineManager.GetNoahAnimatorController.ClimbFloats(climbInput.y, climbInput.x);
     }
     // private void Climb(Vector3 input, Rigidbody rb)
     // {
