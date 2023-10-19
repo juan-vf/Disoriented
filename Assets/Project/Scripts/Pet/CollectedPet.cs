@@ -8,7 +8,6 @@ public class CollectedPet : MonoBehaviour
     void Start()
     {
         _petController = GetComponent<PetController>();
-        transform.localScale = Vector3.one * .25f;
     }
 
     // Update is called once per frame

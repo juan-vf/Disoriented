@@ -9,6 +9,7 @@ public class EnemieStateMachineManager : MonoBehaviour
     [SerializeField] private string _currentStateString;
     private BaseState _currentState;
     private EnemieManager _enemieManager;
+    private EnemieAnimatorController _enemieAnimatorController;
     
     private BaseState _defaultState = new TransportState();
     private BaseState _persuitState = new PersuitState();
@@ -20,6 +21,7 @@ public class EnemieStateMachineManager : MonoBehaviour
         PetEventsManager.GetCurrent.onCallEnemieToTransport += InitTransport;
         //
         _enemieManager = GetComponent<EnemieManager>();
+        _enemieAnimatorController = GetComponent<EnemieAnimatorController>();
         
 
         _currentState = _defaultState;
@@ -62,5 +64,6 @@ public class EnemieStateMachineManager : MonoBehaviour
     public BaseState GetSearchState{get{return _searchState;}}
     public BaseState getTransportState{get{return _transportState;}}
     public EnemieManager GetEnemieManager{get{return _enemieManager;}}
+    public EnemieAnimatorController GetEnemieAnimatorController{get{return _enemieAnimatorController;}}
 
 }

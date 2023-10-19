@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarriageDefaultState : CarriageBaseState
@@ -11,13 +12,11 @@ public class CarriageDefaultState : CarriageBaseState
     // cuando la lista tenga 0 valores lanzar el evento
     public override void EnterState(CarriageStateManager carriage)
     {
-        Debug.Log("Estoy en default state");
+        MonoBehaviour.Instantiate(carriage.GetCloseCarriage, carriage.transform.position, carriage.transform.rotation, carriage.transform);
+        Debug.Log("Carriage default state");
         CarriageEventController.GetCurrent.onAddPet += addPet;
-        CarriageEventController.GetCurrent.onUpdateMaxCountCarriage += MaxCountPet;
+        // CarriageEventController.GetCurrent.onUpdateMaxCountCarriage += MaxCountPet;
         Debug.Log("Pet actual count: " + _petActualCount);
-
-
-
     }
     public override void ExitState(CarriageStateManager carriage)
     {
@@ -25,15 +24,16 @@ public class CarriageDefaultState : CarriageBaseState
     }
     public override void UpdateState(CarriageStateManager carriage)
     {
-        Debug.Log(_maxPetCountSpawned);
+        // Debug.Log(_maxPetCountSpawned);
         if (petCount >= 0.70 * _maxPetCountSpawned)
         {
-            
+            //70% DE MASCOTAS GENERADAS
             carriage.SwitchState(carriage.CarriageFullState);
 
         }
         if (petCount <= 0.70 * _maxPetCountSpawned && _petActualCount == 0)
         {
+            //SI ES MENOR AL 70% Y YA NO HAY MASCOTAS(SE ROMPE PARA DAR PASO)
             carriage.SwitchState(carriage.CarriageBrokenState);
 
         }

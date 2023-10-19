@@ -13,7 +13,7 @@ public class BackpackController : MonoBehaviour
     private bool _fullyBackPack = false;
     void Start()
     {
-        PetEventsManager.GetCurrent.onSendPetData += AddPet;
+        // PetEventsManager.GetCurrent.onSendPetData += AddPet;
     }
     void Update()
     {

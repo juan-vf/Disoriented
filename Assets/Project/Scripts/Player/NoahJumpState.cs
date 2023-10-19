@@ -11,6 +11,7 @@ public class NoahJumpState : NoahBaseState
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
         Debug.Log("ENTER SALTO");
+        noahStateMachineManager.GetNoahController.SetJumpCollider();
         noahStateMachineManager.GetNoahAnimatorController.Jump(true);
         Jump(noahStateMachineManager.GetRigidbody);
         noahStateMachineManager.GetNoahAnimatorController.OnGround(false);
@@ -18,8 +19,7 @@ public class NoahJumpState : NoahBaseState
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)
     {
-         noahStateMachineManager.GetNoahAnimatorController.Jump(false);
-        Debug.Log("EXIT SALTO");
+        noahStateMachineManager.GetNoahAnimatorController.Jump(false);
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -31,6 +31,8 @@ public class NoahJumpState : NoahBaseState
         Debug.Log("NoahJumpState");
         if (noahStateMachineManager.GetNoahController.GetOnGround)
         {
+            Debug.Log("En el suelo");
+            noahStateMachineManager.GetNoahController.EnaDisaColliders("jump", false);
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahDefaultState);
         }
         noahStateMachineManager.GetNoahAnimatorController.JumpVelocity(noahStateMachineManager.GetRigidbody.velocity.y * 0.1f);

@@ -11,13 +11,15 @@ public class Pet : ScriptableObject
     */
     // [SerializeField]
     // private SkinnedMeshRenderer _Mesh;
-    [SerializeField]private Mesh _mesh;
+    // [SerializeField]private Mesh _mesh;
+    [SerializeField]private GameObject _model; 
     [SerializeField] private Material _Material;
     [SerializeField]private int _id;
     [SerializeField] private String _name;
     [SerializeField] private String _description;
 
-    public Mesh GetMesh{get{return _mesh;}}
+    // public Mesh GetMesh{get{return _mesh;}}
+    public GameObject GetModel{get{return _model;}}
     public Material GetMaterial{get{return _Material;}}
     public int GetId{get{return _id;}}
     public String GetName{get{return _name;}}

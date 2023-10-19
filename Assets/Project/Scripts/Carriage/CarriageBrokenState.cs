@@ -9,8 +9,7 @@ public class CarriageBrokenState : CarriageBaseState
         Debug.Log("Estoy roto");
         // TODO:  carriage broken
         // TODO: animate carriage broken then change the scene.
-        carriage.GetComponent<MeshFilter>().mesh = carriage.GetOpenCarriage;
-        carriage.GetComponent<MeshFilter>().transform.localRotation = Quaternion.Euler(-90, 0, 0);
+        GameObject a = MonoBehaviour.Instantiate(carriage.GetCloseCarriage, carriage.transform.position, Quaternion.identity, carriage.transform);
 
 
     }

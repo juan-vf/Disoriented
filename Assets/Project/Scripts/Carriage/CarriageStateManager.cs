@@ -10,8 +10,8 @@ public class CarriageStateManager : MonoBehaviour
     public CarriageDefaultState CarriageDefaultState = new CarriageDefaultState();
 
     [SerializeField] private GameObject _petCollected;
-    [SerializeField] private Mesh _carriageOpen;
-    [SerializeField] private Mesh _carriageClose;
+    [SerializeField] private GameObject _carriageOpen;
+    [SerializeField] private GameObject _carriageClose;
     private Transform _spawnPoint;
 
 
@@ -48,7 +48,7 @@ public class CarriageStateManager : MonoBehaviour
     //    GameObject _pet = Instantiate(_petCollected, transform.position, Quaternion.identity, transform);
     //    _pet.GetComponent<PetController>().GetId = id;
     //}
-    public Mesh GetOpenCarriage { get { return _carriageOpen; } }
-    public Mesh GetCloseCarriage { get { return _carriageClose; } }
+    public GameObject GetOpenCarriage { get { return _carriageOpen; } }
+    public GameObject GetCloseCarriage { get { return _carriageClose; } }
 
 }

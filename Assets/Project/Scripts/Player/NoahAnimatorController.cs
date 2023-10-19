@@ -5,9 +5,6 @@ using UnityEngine;
 public class NoahAnimatorController : MonoBehaviour
 {
     private Animator _animator;
-    private float _velocity = 0.0f;
-    private float _acceleration = 0.1f;
-    private float _deceleration = 0.5f;
     private int _velocityHash;
     private int _triggerJump;
     private int _isJumping;
@@ -17,6 +14,8 @@ public class NoahAnimatorController : MonoBehaviour
     private int _verticalClimb;
     private int _horizontalClimb;
     private int _isClimbing;
+    private int _isCollecting;
+    private int _endCollecting;
     private int _endJumping;
     
     // Start is called before the first frame update
@@ -33,9 +32,12 @@ public class NoahAnimatorController : MonoBehaviour
         _verticalClimb = Animator.StringToHash("VerticalClimb");
         _horizontalClimb = Animator.StringToHash("HorizontalClimb");
         _isClimbing = Animator.StringToHash("IsClimbing");
+        _isCollecting = Animator.StringToHash("Collect");
+        _endCollecting = Animator.StringToHash("EndCollect");
 
         //Set Hash variables
-        _animator.SetBool(_onGround, true);
+        OnGround(true);
+        EndCollecting(false);
 
         _endJumping = Animator.StringToHash("EndJumping");
     }
@@ -43,17 +45,9 @@ public class NoahAnimatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerInputManager.getCurrent.getMove != Vector2.zero && _velocity < 1.0f){
-            _velocity += Time.deltaTime * _acceleration;
-        }
-        if(PlayerInputManager.getCurrent.getMove == Vector2.zero && _velocity > 0.0f){
-            _velocity -=Time.deltaTime * _deceleration;
-        }
-        if(PlayerInputManager.getCurrent.getMove == Vector2.zero && _velocity < 0.0f){
-            _velocity = 0.0f;
-        }
-
-        _animator.SetFloat(_velocityHash, _velocity);
+    }
+    public void SetVelocity(float velocity){
+        _animator.SetFloat(_velocityHash, velocity);
     }
     public void Jump(bool value){
         // _animator.SetBool(_isJumping, value);
@@ -74,6 +68,12 @@ public class NoahAnimatorController : MonoBehaviour
     }
     public void IsClimbing(bool value){
         _animator.SetBool(_isClimbing, value);
+    }
+    public void IsCollecting(){
+        _animator.SetTrigger(_isCollecting);
+    }
+    public void EndCollecting(bool value){
+        _animator.SetBool(_endCollecting, value);
     }
 
     public void EndJump(bool value){

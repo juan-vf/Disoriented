@@ -6,33 +6,41 @@ public class UnCollectedPet : MonoBehaviour
 {
     private bool _isPicked;
     private PetController _petController;
-    private bool _enabledToCollect;
+    [SerializeField] private bool _enabledToCollect;
     void Start()
     {
 
         _petController = GetComponent<PetController>();
         PetEventsManager.GetCurrent.onBackPackFull += BackPackUpdates;
         PetEventsManager.GetCurrent.onDestroyPetById += PickedUpByEnemy;
-        // PetEventsManager.GetCurrent.onGrabPet += Picked;
+        PetEventsManager.GetCurrent.onGrabPet += Picked;
+        // PetEventsManager.GetCurrent.onSendPetData += Picked;
     }
-    private void Update() {
+    private void Update()
+    {
     }
-    private void OnCollisionStay(Collision other) {
-        bool tag = other.gameObject.tag == "Player";
-        if(tag && PlayerInputManager.getCurrent.getIsPickedUp && _enabledToCollect){
-            Picked();
+    private void OnCollisionStay(Collision other)
+    {
+    }
+    public void Picked(int id)
+    {
+        if(_petController.GetSerialId == id){
+
+            PetEventsManager.GetCurrent.SendPetData(_petController.GetId);
+
+            // Debug.Log("ME DESTRUYO");
+            // transform.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
-    private void Picked(){
-        PetEventsManager.GetCurrent.SendPetData(_petController.GetId);
-        Destroy(gameObject);
-    }
-    private void BackPackUpdates(bool value){
+    private void BackPackUpdates(bool value)
+    {
         _enabledToCollect = value;
     }
-    void PickedUpByEnemy(int id){
-        if(this == null){return;}
-        if(_petController.GetSerialId == id){Destroy(gameObject);}
+    void PickedUpByEnemy(int id)
+    {
+        if (this == null) { return; }
+        if (_petController.GetSerialId == id) { Destroy(gameObject); }
     }
-    public bool GetIsPickedUp{get{return _isPicked;}}
+    public bool GetIsPickedUp { get { return _isPicked; } }
 }

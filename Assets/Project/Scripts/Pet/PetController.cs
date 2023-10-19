@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class PetController : MonoBehaviour
 {
-    [SerializeField]
-    private int _id;
-    private int _serialId;
+    [SerializeField]private int _id;
+    [SerializeField]private int _serialId;
     private Pet _pet;
     private Mesh _mesh;
     // private Material _Material;
@@ -21,10 +20,12 @@ public class PetController : MonoBehaviour
     void Start()
     {
         _pet = PetsList.GetCurrent.GetPetById(_id);
-        _meshFilter = GetComponent<MeshFilter>();
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _meshFilter.mesh = _pet.GetMesh;
-        _meshRenderer.material = _pet.GetMaterial;
+        GameObject model = Instantiate(_pet.GetModel, transform.position, Quaternion.identity, transform);
+        // model.GetComponent<MeshRenderer>().material = _pet.GetMaterial;
+        // _meshFilter = GetComponent<MeshFilter>();
+        // _meshRenderer = GetComponent<MeshRenderer>();
+        // _meshFilter.mesh = _pet.GetMesh;
+        // _meshRenderer.material = _pet.GetMaterial;
         _name = _pet.GetName;
         _description = _pet.GetDescription;
     }

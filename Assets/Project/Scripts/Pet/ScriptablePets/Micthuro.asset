@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cfaeffb3df7dd44b5e343f16773899, type: 3}
   m_Name: Micthuro
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _model: {fileID: 919132149155446097, guid: aa852a51af1431747a171de5dfe394a0, type: 3}
   _Material: {fileID: 2100000, guid: c7327d96789580b48af34b11dea07b0f, type: 2}
   _id: 1
   _name: Micthuro

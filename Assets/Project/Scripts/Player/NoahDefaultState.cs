@@ -12,7 +12,6 @@ public class NoahDefaultState : NoahBaseState
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
         noahStateMachineManager.GetNoahController.SetStandingCollider();
-        // throw new System.NotImplementedException();
     }
 
     public override void ExitState(NoahStateMachineManager noahStateMachineManager)

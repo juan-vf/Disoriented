@@ -6,6 +6,8 @@ public class CollectComponent : CharacterBaseComponent
 {
 
     public GameObject _itemPrefab;
+    private Rigidbody _rb;
+    public CollectComponent(Rigidbody rigidbody){ _rb = rigidbody;}
     public override void Process()
     {
     }
@@ -24,21 +26,15 @@ public class CollectComponent : CharacterBaseComponent
     {
         throw new System.NotImplementedException();
     }
-    public void Collect(Rigidbody rigidbody)
+    public bool PetToCollect()
     {
-        Vector3 rayOrigin = rigidbody.transform.position;
-        Vector3 rayDirection = rigidbody.transform.forward;
+        Ray ray = new Ray(_rb.transform.position + _rb.transform.TransformDirection(Vector2.up * 0.5f), _rb.transform.forward);
         RaycastHit hit;
-
-        if (Physics.Raycast(rayOrigin, rayDirection, out hit, 2f))
-        {
-            Debug.Log("Pego el rayo");
-            GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.CompareTag("Pet"))
-            {
-                // rigidbody.Instantiate(_itemPrefab, _positionBack.position, Quaternion.identity, _position);
-            }
-        }
-        // Debug.DrawRay(rayOrigin, rayDirection * rangeRaycast, Color.red, 20f);
+        if(Physics.Raycast(ray, out hit, .7f) && hit.transform.tag == "Pet"){
+            // Debug.Log("PARA MANDAR EVBENTOOTOOTOTOT");
+            PetEventsManager.GetCurrent.GrabPet(hit.transform.GetComponent<PetController>().GetSerialId);
+            //IMPLEMENTAR EL MISMO EVENTO PARA DESTRUIR EL QUE CONINCIDA CON EL ID Y MANDAR A CREARLO
+            return true;
+        }else{return false;}
     }
 }

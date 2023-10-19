@@ -31,9 +31,7 @@ public class ClimbComponent : CharacterBaseComponent
             out wallPoint,
             .8f))
         {
-
             _rb.transform.forward = -wallPoint.normal;
-
             // if (!Physics.Raycast(_rb.transform.position, _rb.transform.forward, 1.3f))
             // {
             //     _rb.velocity = input * 20f;

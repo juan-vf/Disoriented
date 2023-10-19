@@ -33,15 +33,22 @@ public class TransportState : BaseState
         _enemieManager = enemieStateMachineManager.GetEnemieManager;
         var _navMeshController = _enemieManager.GetNavMeshController;
         var _isHoldingPet = _enemieManager.GetHoldingPet;
-        var _fOV = _enemieManager.GetFieldOfView; 
+        var _fOV = _enemieManager.GetFieldOfView;
+        
+
         //TRANSPORT LOGIC WITH EVENTS
         if (_isHoldingPet)
         {
+
+            //ANIMACION DE CAMINATA LLEVANDO LA MASCOTA
+            enemieStateMachineManager.GetEnemieAnimatorController.SetIsTransporting(true);
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
 
+
             if(_navMeshController.IsArrived()){
+                //SI LA TENGO Y LLEGUE LA SUELTO
                 _enemieManager.DropPet();
                 PetEventsManager.GetCurrent.EnemyRequestPet();
             }
@@ -49,6 +56,10 @@ public class TransportState : BaseState
         }
         else
         {
+            //ANIMACION DE CAMINATA NORMAL
+            enemieStateMachineManager.GetEnemieAnimatorController.SetIsTransporting(false);
+            enemieStateMachineManager.GetEnemieAnimatorController.SetMovement(0);
+
             if (_nextPetPosition.Equals(Vector3.zero))
             {
                 PetEventsManager.GetCurrent.EnemyRequestPet();
