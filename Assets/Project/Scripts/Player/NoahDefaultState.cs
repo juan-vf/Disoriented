@@ -27,7 +27,7 @@ public class NoahDefaultState : NoahBaseState
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
         
-        Debug.Log("DefaultState");
+        // Debug.Log("DefaultState");
         RaycastHit wallPoint;
         
         if (PlayerInputManager.getCurrent.getIsClimbing && Physics.Raycast(

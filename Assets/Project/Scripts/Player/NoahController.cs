@@ -36,12 +36,14 @@ public class NoahController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _noahStateMachineManager = GetComponent<NoahStateMachineManager>();
         _noahAnimatorController = GetComponent<NoahAnimatorController>();
+        _collectComponent = GetComponent<CollectComponent>();
 
         _backpackControllerTest = _backPackOrigin.GetComponent<BackpackControllerTest>();
+
         //COMPONENTES
         _movementComponent = new MovementComponent(_rb);
-        _climbComponent = new ClimbComponent(_rb);
-        _collectComponent = new CollectComponent(_rb);
+        _climbComponent = new ClimbComponent(_rb, _rb.position);
+        // _collectComponent = new CollectComponent(_rb);
         EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
         PetEventsManager.GetCurrent.onSendPetData += AddPet;
     }
@@ -52,7 +54,7 @@ public class NoahController : MonoBehaviour
 
         _noahAnimatorController.SetVelocity(PlayerInputManager.getCurrent.GetVelocity);
         //VARIOS IF() SE PODRIAN EVITAR SI EL PLAYERINPUTMANAGER CONTROLA LA ANIMACION O LA ORDEN EN SI
-        if (PlayerInputManager.getCurrent.getIsPickedUp && _collectComponent.PetToCollect())
+        if (PlayerInputManager.getCurrent.getIsPickedUp && _collectComponent.PetToCollect(_rb))
         {
             _noahAnimatorController.IsCollecting();
             _noahAnimatorController.EndCollecting(false);
@@ -98,7 +100,7 @@ public class NoahController : MonoBehaviour
 
 
         RaycastHit hit;
-        _onGround = Physics.Raycast(_rb.transform.position, Vector3.down, out hit, .05f);
+        _onGround = Physics.Raycast(_rb.transform.position, Vector3.down, out hit, .1f);
 
         // if(_noahStateMachineManager.getCurrentState != _noahStateMachineManager.getJumpState && _onGround){SetStandingCollider();}
 
@@ -110,8 +112,8 @@ public class NoahController : MonoBehaviour
     {
         _hide = value;
     }
-    void AddPet(int id){
-        _backpackControllerTest.AddPet(id);
+    void AddPet(int id, int serialId){
+        _backpackControllerTest.AddPet(id, serialId);
     }
     public bool GetIsFinishClimbing { get { return _isFinishClimbing; } }
     public bool GetHide { get { return _hide; } }

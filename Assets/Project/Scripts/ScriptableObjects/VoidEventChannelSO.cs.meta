@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/ScriptableObjects/VoidEventChannelSO.cs.meta
 guid: 3b2684442c40cd243ad16ecb939c24a0
+========
+guid: f41fd75bcb6698f4795ac0f5dd22cde3
+>>>>>>>> Jdev:Assets/Project/Scripts/ScriptableEvents/SimpleEvent.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

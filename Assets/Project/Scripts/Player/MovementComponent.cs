@@ -7,7 +7,8 @@ public class MovementComponent : CharacterBaseComponent
     private Rigidbody _rb;
     private Vector2 _climbInput;
     private  Vector3 _input;
-    private float _walkSpeed = 3f;
+    private float _walkSpeed = 5f;
+    private float _rotationSpeed = 3f;
     public MovementComponent(Rigidbody rigidbody){
         _rb = rigidbody;
     }
@@ -18,6 +19,10 @@ public class MovementComponent : CharacterBaseComponent
         _rb.velocity = newVelo;
         if (_input.sqrMagnitude > 0.01f)
         {
+            Quaternion targetRotation = Quaternion.LookRotation(_input.normalized, Vector3.up);
+
+        // Interpolar gradualmente la rotación actual hacia la rotación deseada.
+            // _rb.transform.rotation = Quaternion.Slerp(_rb.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             _rb.transform.forward = _input;
         }
         return;

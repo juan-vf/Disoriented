@@ -12,25 +12,30 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private List<Transform> targetsVisibles = new List<Transform>();
     private RaycastHit m_targetHit;
+    private bool _isTargetInRangeButNotVisible;
     private void FixedUpdate()
     {
         Detected(target, m_dstVision, m_angleVision);
+
+        //SI EL TARGET ESTA EN EL RANGO PERO NO SE LO ESTA VIENDO
+        // _isTargetInRangeButNotVisible = (InRange && )? true:false;
     }
 
     private void OnDrawGizmos() {
+        //PARA BUILDEAR UNA VERSION, COMENTAR TODA ESTA FUNCION, SINO NO PERMITE HACER EL BUILD
 
         // FieldOfView fov = (FieldOfView)target;
 
         Color color = new Color(1, 0, 0, 0.2f);
 
-        // Handles.color = color;
-        // Handles.DrawSolidArc(
-        //     transform.position,
-        //     transform.up,
-        //     Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
-        //     m_angleVision,
-        //     m_dstVision
-        // );
+        Handles.color = color;
+        Handles.DrawSolidArc(
+            transform.position,
+            transform.up,
+            Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
+            m_angleVision,
+            m_dstVision
+        );
 
     }
     public void Detected(
@@ -98,5 +103,6 @@ public class FieldOfView : MonoBehaviour
         get { return target; }
     }
     public float getDistVision{get{return m_dstVision;}}
+    public bool GetisTargetInRangeButNotVisible{get{return _isTargetInRangeButNotVisible;}}
 
 }

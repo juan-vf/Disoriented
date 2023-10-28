@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: PetSpawner01
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2871075342146095794, guid: 1964deec4abdb154b9ed566d1351b58d, type: 3}
-  _maxSpawnsPets: 5
+  _maxSpawnsPets: 6
   _center: {x: 0, y: 0, z: 0}
-  _range: 2.5
+  _range: 1.1
   _spawnsList: []
   _minHeight: 0
-  _maxHeight: 2
+  _maxHeight: 0
   _callEnemieToTransport: 0

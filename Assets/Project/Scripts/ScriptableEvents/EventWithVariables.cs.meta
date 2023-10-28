@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/TriggerPartycleSystem.cs.meta
+guid: a493eed6bec04c64d83e4972b1384181
+========
+guid: 7d34166d4eb3c0f488b11f2e397b9c5b
+>>>>>>>> Jdev:Assets/Project/Scripts/ScriptableEvents/EventWithVariables.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

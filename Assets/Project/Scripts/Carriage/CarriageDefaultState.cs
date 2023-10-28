@@ -13,10 +13,9 @@ public class CarriageDefaultState : CarriageBaseState
     public override void EnterState(CarriageStateManager carriage)
     {
         MonoBehaviour.Instantiate(carriage.GetCloseCarriage, carriage.transform.position, carriage.transform.rotation, carriage.transform);
-        Debug.Log("Carriage default state");
+        // Debug.Log("Carriage default state");
         CarriageEventController.GetCurrent.onAddPet += addPet;
-        // CarriageEventController.GetCurrent.onUpdateMaxCountCarriage += MaxCountPet;
-        Debug.Log("Pet actual count: " + _petActualCount);
+        CarriageEventController.GetCurrent.onUpdateMaxCountCarriage += MaxCountPet;
     }
     public override void ExitState(CarriageStateManager carriage)
     {
@@ -24,12 +23,12 @@ public class CarriageDefaultState : CarriageBaseState
     }
     public override void UpdateState(CarriageStateManager carriage)
     {
+        // Debug.Log("Pet actual count: " + _petActualCount + " and Carriage count: " + petCount);
         // Debug.Log(_maxPetCountSpawned);
-        if (petCount >= 0.70 * _maxPetCountSpawned)
+        if (petCount >= 0.70 * _maxPetCountSpawned && _maxPetCountSpawned != 0f)
         {
             //70% DE MASCOTAS GENERADAS
             carriage.SwitchState(carriage.CarriageFullState);
-
         }
         if (petCount <= 0.70 * _maxPetCountSpawned && _petActualCount == 0)
         {
@@ -54,7 +53,6 @@ public class CarriageDefaultState : CarriageBaseState
     }
     void MaxCountPet(int count)
     {
-
         if (count > _maxPetCountSpawned) 
         {
             _maxPetCountSpawned = count;

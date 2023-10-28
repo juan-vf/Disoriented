@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/TriggerPartycleSystem.cs.meta
 guid: e80ccf8bcbfb91c42bc9513c2ef0f0ba
+========
+guid: 7d34166d4eb3c0f488b11f2e397b9c5b
+>>>>>>>> Jdev:Assets/Project/Scripts/ScriptableEvents/EventWithVariables.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

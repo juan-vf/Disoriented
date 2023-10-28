@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/Cage.meta
 guid: 6fd793b17a875854ebbfe72bd4e4cd19
+========
+guid: 2539484a1ba07cf41b77833cc84e0f9d
+>>>>>>>> Jdev:Assets/Project/Scripts/ScriptableEvents.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

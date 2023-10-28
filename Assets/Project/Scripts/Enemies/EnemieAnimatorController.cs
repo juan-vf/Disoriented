@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemieAnimatorController : MonoBehaviour
@@ -17,7 +19,6 @@ public class EnemieAnimatorController : MonoBehaviour
         _isTransporting = Animator.StringToHash("FIsTransporting");
         _isSearching = Animator.StringToHash("FIsSearching");
 
-
         //SET INITIALS VALUES
         SetIsTransporting(false);
         SetIsSearching(false);
@@ -28,9 +29,10 @@ public class EnemieAnimatorController : MonoBehaviour
     {
 
     }
-    public void SetMovement(int move)
+    public Animator GetAnimator{get{return _animator;}}
+    public void SetMovement(float move)
     {
-        _animator.SetInteger(_movement, move);
+        _animator.SetFloat(_movement, move);
     }
     public void SetIsTransporting(bool value)
     {
@@ -38,7 +40,12 @@ public class EnemieAnimatorController : MonoBehaviour
     }
     public void SetIsSearching(bool value)
     {
+        // Debug.Log("Se Seteo IsSearching: "+ value);
         _animator.SetBool(_isSearching, value);
     }
 
+    public float GetAnimationLengthByName(string animationName){
+        AnimationClip clip = _animator.runtimeAnimatorController.animationClips.FirstOrDefault(c => c.name == animationName);
+        return clip.length;
+    }
 }

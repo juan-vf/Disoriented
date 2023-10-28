@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CarriageEventController : MonoBehaviour
@@ -15,6 +16,7 @@ public class CarriageEventController : MonoBehaviour
     public event Action onChangeFullState;
     public event Action<int> onAddPet;
     public event Action<int> onUpdateMaxCountCarriage;
+    public event Action onEnemyLeaves;
 
     public void ChangeFullState()
     {
@@ -28,7 +30,7 @@ public class CarriageEventController : MonoBehaviour
     {
         onUpdateMaxCountCarriage?.Invoke(count);
     }
-    
+    public void EnemyLeaves(){onEnemyLeaves?.Invoke();}
 
     public static CarriageEventController GetCurrent { get { return _current; } }
     

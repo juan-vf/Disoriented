@@ -33,7 +33,8 @@ public class PetSpawnerController : MonoBehaviour
         //Enviamos
 
         CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
-
+        
+        //CONSIDERAR QUE AL TENER 2 SPAWNER EN SCENEA, EL ENEMIGO PIDE LA UBICACION Y LOS DOS SPAWNER LE ENVIARAN UNA MASCOTA.
         PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
         // PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
     }

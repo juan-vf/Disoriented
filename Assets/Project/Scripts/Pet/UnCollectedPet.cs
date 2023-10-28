@@ -22,11 +22,11 @@ public class UnCollectedPet : MonoBehaviour
     private void OnCollisionStay(Collision other)
     {
     }
-    public void Picked(int id)
+    public void Picked(int id, int serialId)
     {
         if(_petController.GetSerialId == id){
 
-            PetEventsManager.GetCurrent.SendPetData(_petController.GetId);
+            PetEventsManager.GetCurrent.SendPetData(_petController.GetId, _petController.GetSerialId);
 
             // Debug.Log("ME DESTRUYO");
             // transform.gameObject.SetActive(false);

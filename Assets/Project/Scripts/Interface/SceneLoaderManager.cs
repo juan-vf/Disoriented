@@ -23,6 +23,6 @@ public class SceneLoaderManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void LoadLooseScene(){
-        // SceneManager.LoadScene("LevelOver");
+        SceneManager.LoadScene("LevelOver");
     }
 }

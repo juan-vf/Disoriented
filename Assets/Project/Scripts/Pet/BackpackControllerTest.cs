@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackpackControllerTest : MonoBehaviour
@@ -10,12 +11,14 @@ public class BackpackControllerTest : MonoBehaviour
     [SerializeField] private int _sizeBackpack;
     [SerializeField] private Transform _petTargetTransform;
     [SerializeField] private GameObject _petPrefab;
+    private int _idPetToAdd;
     
     private Grid _grid;
     private List<Vector3> _petsPositions = new List<Vector3>();
     // Start is called before the first frame update
     void Start()
     {
+        _idPetToAdd = -100;
         _petsCollecteds = 0;
         _grid = GetComponent<Grid>();
         _sizeBackpack = _rowCount * _prefabsPerRow;
@@ -43,12 +46,14 @@ public class BackpackControllerTest : MonoBehaviour
             }
         }
     }
-    public void AddPet(int id)
+    public void AddPet(int id, int serialId)
     {
-        // Debug.Log("LLEGO EVENTO: " + id);
-        _petsCollecteds++;
-        if (_petsCollecteds >= _sizeBackpack) { SceneEventController.GetCurrent.LoadWinScene(); Debug.Log("Se envio el evento"); return; }
+        if (_petsCollecteds >= _sizeBackpack) { /*SceneEventController.GetCurrent.LoadWinScene();*/ Debug.Log("Se envio el evento"); return; }
         if (!PlayerInputManager.getCurrent.getIsPickedUp) { return; }
+        if(_idPetToAdd == serialId){return;}
+        Debug.Log("Se agrego:  " + id);
+        _petsCollecteds++;
+        _idPetToAdd = serialId;
         Pet pet = PetsList.GetCurrent.GetPetById(id);
         GeneratePet(pet);
     }

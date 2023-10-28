@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/Enemies/EnemieManagmentEvent.cs.meta
 guid: 6796a0060aa63954498af6d0a2711559
+========
+guid: 5aca5d4ccff01534eb61a5255661b8c2
+>>>>>>>> Jdev:Assets/PS.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

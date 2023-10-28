@@ -11,11 +11,12 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
         private float _timeNoSeeingPlayer;
         private float _maxTimeNoSeeingPlayer = 10f;
         private NavMeshController _navMeshController;
+        private EnemieAnimatorController _enemieAnimatorController;
         public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
         {
             _timeNoSeeingPlayer = 0f;
             Debug.Log("persuit state");
-            
+            _enemieAnimatorController = enemieStateMachineManager.GetEnemieAnimatorController;
         }
         public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
         {
@@ -27,8 +28,10 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
             /*
                 SE PODRIA LANZAR UN EVENTO PARA QUE EJECUTE LA ANIMACION QUE LOS ATRAPA AL PLAYER
             */
-            Debug.Log("ATRAPE AL JUGADOR");
             if(other.gameObject.CompareTag("Player")){
+                _enemieAnimatorController.SetIsSearching(true);
+                _enemieAnimatorController.SetMovement(1);
+                Debug.Log("ATRAPE AL JUGADOR");
                 SceneEventController.GetCurrent.LoadLooseScene();
             }
         }
@@ -42,8 +45,8 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
             var fOV = enemieStateMachineManager.GetEnemieManager.GetFieldOfView;
             
 
-            if(enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden){
-                Debug.Log("SE ESCONDIO");
+            if(enemieStateMachineManager.GetEnemieManager.GetPlayerIsHidden && !fOV.InRange){
+                Debug.Log("SE ESCONDIO ESTANDO LEJOS DEL RANGO");
                 //PENSAR LOGICA PARA QUE CUANDO SE ESCONDA Y AUN ESTE CERCA QUE LO AGARRE IGUAL (PUEDE SER DEPENDIENDO LA DISTANCIA, SI HABIA)
                 enemieStateMachineManager.SwitchState(enemieStateMachineManager.GetSearchState);
             }

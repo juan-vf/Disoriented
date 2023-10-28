@@ -20,6 +20,7 @@ public class EnemieManager : MonoBehaviour
 
         // ChestEventSystem.current.onDropPet += instanciatePet;
         EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
+        CarriageEventController.GetCurrent.onEnemyLeaves += Leave;
     }
 
     // Update is called once per frame
@@ -40,6 +41,10 @@ public class EnemieManager : MonoBehaviour
         CarriageEventController.GetCurrent.AddPet(_hands.GetChild(0).gameObject.GetComponent<PetController>().GetId);
         Destroy(_hands.GetChild(0).gameObject);
         holdingPet = false;
+    }
+    void Leave(){
+        _enemieNavMeshController.UpdateTargetDir(new Vector3(14.4899998f,-10.8299999f,27.0400009f));
+        //ARREGLAR
     }
     public bool GetHoldingPet{get{return holdingPet;}}
     public Transform GetCarriage{get{return _carriage;}}

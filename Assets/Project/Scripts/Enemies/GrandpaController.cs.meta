@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Scripts/Enemies/GrandpaController.cs.meta
 guid: 7009ad25ab830b649ad93293aa7bec9b
+========
+guid: 6f0d7f99b23b38d4ea4e2f81a5c1c3ed
+>>>>>>>> Jdev:Assets/Project/Scripts/TestSCript.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

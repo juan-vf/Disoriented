@@ -16,6 +16,8 @@ public class PlayerInputManager : MonoBehaviour
     private float _velocity = 0.0f;
     private float _acceleration = 0.1f;
     private float _deceleration = 0.5f;
+    //VARIABLES PARA CONSULTAS
+    private bool _isMovingCrouching = false;
     void Awake()
     {
         _current = this;
@@ -44,6 +46,7 @@ public class PlayerInputManager : MonoBehaviour
             _velocity = 0.0f;
         }
 
+        _isMovingCrouching = (_move.magnitude > Vector2.zero.magnitude && _IsCrouched == true)? true: false;
     }
     public void Climb(InputAction.CallbackContext callbackContext)
     {
@@ -101,4 +104,5 @@ public class PlayerInputManager : MonoBehaviour
     public bool getIsCrouched { get { return _IsCrouched; } }
     public bool getIsPickedUp { get { return _IsPickedUp; } }
     public float GetVelocity{get{return _velocity;}}
+    public bool GetIsMovingCrouching{get{return _isMovingCrouching;}}
 }

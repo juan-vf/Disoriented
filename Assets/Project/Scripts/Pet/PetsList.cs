@@ -30,16 +30,18 @@ public class PetsList : MonoBehaviour
         }
         return null;
     }
-    public void AgregarNumeroUnico(List<int> lista)
+    // public int AgregarNumeroUnico(List<int> lista)
+    public int AgregarNumeroUnico()
     {
         int nuevoNumero;
         do
         {
             nuevoNumero = GenerarNumeroIdentificadorUnico();
         }
-        while (lista.Contains(nuevoNumero));
+        while (_serialIdList.Contains(nuevoNumero));
 
-        lista.Add(nuevoNumero);
+        _serialIdList.Add(nuevoNumero);
+        return nuevoNumero;
     }
     private int GenerarNumeroIdentificadorUnico()
     {
