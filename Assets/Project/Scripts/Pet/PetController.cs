@@ -20,7 +20,7 @@ public class PetController : MonoBehaviour
     void Start()
     {
         _pet = PetsList.GetCurrent.GetPetById(_id);
-        GameObject model = Instantiate(_pet.GetModel, transform.position, Quaternion.identity, transform);
+        //GameObject model = Instantiate(_pet.GetModel, transform.position, Quaternion.identity, transform);
         // model.GetComponent<MeshRenderer>().material = _pet.GetMaterial;
         // _meshFilter = GetComponent<MeshFilter>();
         // _meshRenderer = GetComponent<MeshRenderer>();

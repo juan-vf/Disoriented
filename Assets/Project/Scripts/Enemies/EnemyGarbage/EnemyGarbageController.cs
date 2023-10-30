@@ -31,7 +31,7 @@ public class EnemyGarbageController : MonoBehaviour
     {
 
         _timeShot += Time.deltaTime;
-        Debug.Log(_timeShot);
+        //Debug.Log(_timeShot);
         if (_timeShot >= _timeBetweenShoot)
         { 
 
