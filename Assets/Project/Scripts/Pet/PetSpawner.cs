@@ -26,6 +26,7 @@ public class PetSpawner : MonoBehaviour
             spawn.GetComponent<PetController>().GetId = randomId;
             spawn.GetComponent<PetController>().GetSerialId = randomSerialId;
             _spawnsList.Add(spawn);
+            Debug.Log(_spawnsList);
 
             spawn.transform.position = _center + Random.insideUnitSphere * _range;
             spawn.transform.position = new Vector3(spawn.transform.position.x, Random.Range(_minHeight, _maxHeight), spawn.transform.position.z);
@@ -43,13 +44,13 @@ int RandomSerialId(List<int> ints)
 }
 
 
-    public void Destroy()
-    {
-        foreach (GameObject spawn in _spawnsList)
-        {
-            Destroy(spawn);
-        }
-    }
+    // public void Destroy()
+    // {
+    //     foreach (GameObject spawn in _spawnsList)
+    //     {
+    //         Destroy(spawn);
+    //     }
+    // }
     public void DeleteById(int id){
         _spawnsList.RemoveAt(id);
     }

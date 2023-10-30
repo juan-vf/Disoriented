@@ -12,6 +12,9 @@ public class BackpackControllerTest : MonoBehaviour
     [SerializeField] private Transform _petTargetTransform;
     [SerializeField] private GameObject _petPrefab;
     private int _idPetToAdd;
+
+    [Header("Events")]
+    [SerializeField] private GrabEventManager _listenerIds;
     
     private Grid _grid;
     private List<Vector3> _petsPositions = new List<Vector3>();
@@ -24,8 +27,10 @@ public class BackpackControllerTest : MonoBehaviour
         _sizeBackpack = _rowCount * _prefabsPerRow;
         _petsPositions.Clear();
         GeneratePositions();
-        PetEventsManager.GetCurrent.onSendPetData += AddPet;
+        // PetEventsManager.GetCurrent.onSendPetData += AddPet;
         // PetEventsManager.GetCurrent.onGrabPet += AddPet;
+
+        _listenerIds.onSendPetToListener += AddPet;
     }
 
     // Update is called once per frame

@@ -14,6 +14,9 @@ public class PetSpawnerController : MonoBehaviour
     [SerializeField] private float _minHeight;
     [SerializeField] private float _maxHeight;
     [SerializeField] private bool _callEnemieToTransport = false;
+
+    [Header("Events")]
+    [SerializeField] private RequestSendLocation _enemyAndSpawner;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,10 @@ public class PetSpawnerController : MonoBehaviour
 
         _petSpawner.Spawn();
         _spawnsList = _petSpawner.GetSpawnList;
+        Debug.Log(_spawnsList[0] + "" + _spawnsList[1] );
+        Debug.Log(_spawnsList.Count);
+      
+        //Enviamos
 
         //Enviamos
         if (CarriageEventController.GetCurrent != null)
@@ -38,8 +45,11 @@ public class PetSpawnerController : MonoBehaviour
         }
         
         //CONSIDERAR QUE AL TENER 2 SPAWNER EN SCENEA, EL ENEMIGO PIDE LA UBICACION Y LOS DOS SPAWNER LE ENVIARAN UNA MASCOTA.
-        PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
         // PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
+        // PetEventsManager.GetCurrent.onEnemyRequestPet += SendPetPosition;
+        _enemyAndSpawner.onRequestLocation += SendPetPosition;
+        
+        // SendPetPosition();
     }
     private void Update() {
 
@@ -68,14 +78,17 @@ public class PetSpawnerController : MonoBehaviour
             return;
             //ACA YA NO HAY MASCOTAS PARA RECOGER
         }
-        if(_spawnsList[0] == null){
-            CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
-            PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[1], _spawnsList[1].GetComponent<PetController>().GetSerialId);
+        if(_spawnsList == null){
+        //     CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
+        //     // PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[1], _spawnsList[1].GetComponent<PetController>().GetSerialId);
+            _enemyAndSpawner.SendLocation(_spawnsList[1]);
             _spawnsList.RemoveAt(1);
-            return;
+            // return;
         }
         CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
-        PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
+        // PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
+        _enemyAndSpawner.SendLocation(_spawnsList[0]);
+        Debug.Log("Envio location");
         _spawnsList.RemoveAt(0);
         // Actualiza los elementos dentro de la lista
         

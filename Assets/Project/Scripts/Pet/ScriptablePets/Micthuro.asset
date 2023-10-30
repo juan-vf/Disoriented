@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cfaeffb3df7dd44b5e343f16773899, type: 3}
   m_Name: Micthuro
   m_EditorClassIdentifier: 
-  _model: {fileID: 8024528223767891561, guid: 825905e4da4d8964784c06bf7cd1ddfe, type: 3}
+  _model: {fileID: 7528639211871884270, guid: d52fe5ab552f345438267cb04535b60c, type: 3}
   _Material: {fileID: 2100000, guid: c7327d96789580b48af34b11dea07b0f, type: 2}
   _id: 1
   _name: Micthuro

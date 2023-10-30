@@ -27,6 +27,8 @@ public class NoahController : MonoBehaviour
     [SerializeField] private CapsuleCollider _jumpCollider;
     [Header("BackPack")]
     [SerializeField] private Transform _backPackOrigin;
+    [Header("Events")]
+    // [SerializeField]private GrabEventManager _grabPetSO;
     private BackpackControllerTest _backpackControllerTest;
     private bool _onGround;
     // Start is called before the first frame update

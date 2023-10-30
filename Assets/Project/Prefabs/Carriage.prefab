@@ -49,6 +49,7 @@ MonoBehaviour:
   _petCollected: {fileID: 0}
   _carriageOpen: {fileID: 919132149155446097, guid: 75f37d69722121848a438bec2c56c67c, type: 3}
   _carriageClose: {fileID: 919132149155446097, guid: 87bd9fcc18ebf3243b0467b3feacae7b, type: 3}
+  _carriageAndEnemy: {fileID: 11400000, guid: 191c90a3a2b6170489d198a795bf60a8, type: 2}
 --- !u!114 &1037662367822671789
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class CarriageStateManager : MonoBehaviour
     [SerializeField] private GameObject _petCollected;
     [SerializeField] private GameObject _carriageOpen;
     [SerializeField] private GameObject _carriageClose;
+    [Header("Events")]
+    [SerializeField] private SimpleEvent _carriageAndEnemy;
     private Transform _spawnPoint;
 
 
@@ -50,5 +52,5 @@ public class CarriageStateManager : MonoBehaviour
     //}
     public GameObject GetOpenCarriage { get { return _carriageOpen; } }
     public GameObject GetCloseCarriage { get { return _carriageClose; } }
-
+    public SimpleEvent GetCarriageAndEnemy {get{return _carriageAndEnemy;}}
 }

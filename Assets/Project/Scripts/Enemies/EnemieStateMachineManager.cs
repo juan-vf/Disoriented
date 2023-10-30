@@ -18,7 +18,7 @@ public class EnemieStateMachineManager : MonoBehaviour
     public void Start()
     {
         //EVENTOS
-        PetEventsManager.GetCurrent.onCallEnemieToTransport += InitTransport;
+        // PetEventsManager.GetCurrent.onCallEnemieToTransport += InitTransport;
         //
         _enemieManager = GetComponent<EnemieManager>();
         _enemieAnimatorController = GetComponent<EnemieAnimatorController>();
