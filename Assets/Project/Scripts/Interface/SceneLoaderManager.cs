@@ -11,7 +11,7 @@ public class SceneLoaderManager : MonoBehaviour
         Debug.Log("SceneLoader");
     }
     public void LoadSceneById(int idScene){
-        // SceneManager.LoadScene(idScene);
+        SceneManager.LoadScene(idScene);
     }
     public void QuitGame(){
         Application.Quit();

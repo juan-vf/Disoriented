@@ -21,7 +21,7 @@ public class UnCollectedPet : MonoBehaviour
 
         //SOEVENTS
         _noahGrabPet.onGrabPet += PickedByNoah;
-        _enemyGrabPet.onGrabPet += PickedUpByEnemy;
+        _enemyGrabPet.onGrabPetInHand += PickedUpByEnemy;
     }
     private void Update()
     {
@@ -44,12 +44,17 @@ public class UnCollectedPet : MonoBehaviour
     {
         _enabledToCollect = value;
     }
-    void PickedUpByEnemy(int id)
+    void PickedUpByEnemy(int id, Transform hands)
     {
         if (this == null) { return; }
         if (_petController.GetSerialId == id) {
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             _enemyGrabPet.SendPetToListener(_petController.GetId, _petController.GetSerialId);
+            transform.SetParent(hands);
+            transform.localPosition = Vector3.zero;
+            transform.GetComponent<CapsuleCollider>().enabled = false;
+            transform.GetComponent<Rigidbody>().isKinematic = true;
+            Debug.Log("AGARRADA");
         }
     }
     void PickedByNoah(int value){

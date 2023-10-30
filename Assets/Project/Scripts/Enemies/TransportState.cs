@@ -6,7 +6,7 @@ using UnityEngine;
 public class TransportState : BaseState
 {
     private List<int> _petsSerialsIds;
-    private Vector3 _nextPetPosition;
+    private Vector3 _nextPetPosition = Vector3.zero;
     private Vector3 _oldPetPosition;
     private int _actualPetId;
     private EnemieManager _enemieManager;
@@ -14,9 +14,11 @@ public class TransportState : BaseState
     public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
     {
         enemieStateMachineManager.GetEnemieAnimatorController.SetIsSearching(false);
-        PetEventsManager.GetCurrent.onEnemyGoToPet += GotoPet;
+        // PetEventsManager.GetCurrent.onEnemyGoToPet += GotoPet;
         // enemieStateMachineManager.GetEnemieManager.GetNavMeshController.SetSpeed(7);
-        enemieStateMachineManager.GetEnemieManager.GetNavMeshController.SetAgentValues("7", "200", "7", "6");
+        // enemieStateMachineManager.GetEnemieManager.GetNavMeshController.SetAgentValues("7", "200", "7", "6");
+
+        enemieStateMachineManager.GetEnemieManager.GetEnemyAndSpawner.onSendLocation += GotoPet;
     }
 
     public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
@@ -27,15 +29,15 @@ public class TransportState : BaseState
     {
         if (other.gameObject.tag == "Carriage")
         {
-            _enemieManager.DropPet();
-            PetEventsManager.GetCurrent.EnemyRequestPet();
+            // _enemieManager.DropPet();
+            // PetEventsManager.GetCurrent.EnemyRequestPet();
         }
     }
 
     public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
     {
 
-        
+
         _enemieManager = enemieStateMachineManager.GetEnemieManager;
         var _navMeshController = _enemieManager.GetNavMeshController;
         var _isHoldingPet = _enemieManager.GetHoldingPet;
@@ -59,12 +61,9 @@ public class TransportState : BaseState
             {
                 //SI LA TENGO Y LLEGUE LA SUELTO
                 enemieStateMachineManager.GetEnemieAnimatorController.SetMovement(-1);
-                // if (enemieStateMachineManager.GetEnemieAnimatorController.GetAnimationLengthByName("FauniscorTakingPet") == enemieStateMachineManager.GetEnemieAnimatorController.GetAnimator.GetCurrentAnimatorStateInfo(0).length)
-                // {
-                    _enemieManager.DropPet();
-                    PetEventsManager.GetCurrent.EnemyRequestPet();
-                    Debug.Log("LA DEJO EN LA CARROZA");
-                // }
+                _enemieManager.DropPet();
+                enemieStateMachineManager.GetEnemieManager.GetEnemyAndSpawner.RequestLocation();
+                Debug.Log("LA DEJO EN LA CARROZA y solicito otra");
             }
             //EN EL TRIGGER ENTER CONTROLLAR QUE SI CHOCA A LA CARROZA O USAR EL IF PARA QUE SUELTE LA CARROZA
         }
@@ -75,12 +74,14 @@ public class TransportState : BaseState
             enemieStateMachineManager.GetEnemieAnimatorController.SetIsTransporting(false);
             enemieStateMachineManager.GetEnemieAnimatorController.SetMovement(0);
             _navMeshController.UpdateTargetDir(_nextPetPosition);
-            if (_nextPetPosition.Equals(Vector3.zero))
-            {
-                //ARREGLAR: EL ENEMIGO RECIBE UNA UBICAICON PARA IR A BUSCAR A LA MASCOTA, PERO EL NOAH YA LA AGARRO, ENTONCES DEBERIA PEDIR OTRA
-                Debug.Log("BUSCANDO UNA MASCOTA");
-                PetEventsManager.GetCurrent.EnemyRequestPet();
-            }
+            if (_nextPetPosition == Vector3.zero) { enemieStateMachineManager.GetEnemieManager.GetEnemyAndSpawner.RequestLocation(); }
+            // if (_navMeshController.IsArrived())
+            // {
+            //ARREGLAR: EL ENEMIGO RECIBE UNA UBICAICON PARA IR A BUSCAR A LA MASCOTA, PERO EL NOAH YA LA AGARRO, ENTONCES DEBERIA PEDIR OTRA
+            // Debug.Log("BUSCANDO UNA MASCOTA");
+            // PetEventsManager.GetCurrent.EnemyRequestPet();
+            // enemieStateMachineManager.GetEnemieManager.GetEnemyAndSpawner.RequestLocation();
+            // }
         }
         //--------------------------()----------------------------
         //CHANGE STATES LOGIC
@@ -96,12 +97,17 @@ public class TransportState : BaseState
         }
     }
 
-    void GotoPet(GameObject pet, int id)
+    void GotoPet(GameObject pet)
     {
-        _nextPetPosition = pet.transform.position;
-        _oldPetPosition = _nextPetPosition;
-        _actualPetId = id;
-        _actualPet = pet;
+        if (pet != null)
+        {
+            _nextPetPosition = pet.transform.position;
+            _oldPetPosition = _nextPetPosition;
+            _actualPetId = pet.transform.GetComponent<PetController>().GetSerialId;
+            _actualPet = pet;
+            Debug.Log(_actualPetId);
+        }
+
     }
 
     public override void OnCollisionEnter(Collision other)
@@ -109,11 +115,12 @@ public class TransportState : BaseState
         if (other.gameObject.CompareTag("Pet"))
         {
             // Debug.Log("CHOCANDO CON MASCOTA");
-            if (other.transform.GetComponent<PetController>().GetSerialId != _actualPetId)
+            if (other.transform.GetComponent<PetController>().GetSerialId == _actualPetId)
             {
-                PetEventsManager.GetCurrent.DestroyPetById(_actualPetId);
-                Debug.Log("Mascota a destruir: "+_actualPetId + "mascota encontrada: "+other.transform.GetComponent<PetController>().GetSerialId);
-                _enemieManager.GrabPet(_actualPet);
+                // PetEventsManager.GetCurrent.DestroyPetById(_actualPetId);
+                _enemieManager.GetEnemyAndPet.GrabPetInHand(_actualPetId, _enemieManager.GetHands);
+                Debug.Log("Mascota a destruir: " + _actualPetId + "mascota encontrada: " + other.transform.GetComponent<PetController>().GetSerialId);
+                _enemieManager.GetHoldingPet = true;
             }
         }
     }

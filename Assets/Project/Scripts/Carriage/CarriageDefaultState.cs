@@ -14,7 +14,8 @@ public class CarriageDefaultState : CarriageBaseState
     {
         MonoBehaviour.Instantiate(carriage.GetCloseCarriage, carriage.transform.position, carriage.transform.rotation, carriage.transform);
         // Debug.Log("Carriage default state");
-        CarriageEventController.GetCurrent.onAddPet += addPet;
+        // CarriageEventController.GetCurrent.onAddPet += addPet;
+        carriage.GetCarriageAndEnemy.OnLaunchSimpleEvent += addPet;
         CarriageEventController.GetCurrent.onUpdateMaxCountCarriage += MaxCountPet;
     }
     public override void ExitState(CarriageStateManager carriage)
@@ -47,7 +48,7 @@ public class CarriageDefaultState : CarriageBaseState
 
     }
 
-    void addPet(int id)
+    void addPet()
     {
         petCount++;
     }

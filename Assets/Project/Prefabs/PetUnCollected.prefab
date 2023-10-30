@@ -404,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enabledToCollect: 1
   _noahGrabPet: {fileID: 11400000, guid: 58c5903a8701ccf4bb62c69f89f92154, type: 2}
+  _enemyGrabPet: {fileID: 11400000, guid: e47a31f7989c32e49bad55dfd25d9aaf, type: 2}
 --- !u!54 &1588761373839481607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -450,10 +451,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35714024
-  m_Height: 0.7142805
+  m_Radius: 0.13
+  m_Height: 0.44
   m_Direction: 1
-  m_Center: {x: 0, y: 0.17, z: 0.0009990335}
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!1 &3400018831992847895
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,8 +47,9 @@ MonoBehaviour:
   _prefab: {fileID: 2871075342146095794, guid: 1964deec4abdb154b9ed566d1351b58d, type: 3}
   _maxSpawnsPets: 6
   _center: {x: 0, y: 0, z: 0}
-  _range: 1.5
+  _range: 2
   _spawnsList: []
   _minHeight: 0
   _maxHeight: 0
   _callEnemieToTransport: 0
+  _enemyAndSpawner: {fileID: 11400000, guid: 0b106ef2ec9efba4e8ff81454e0ff251, type: 2}
