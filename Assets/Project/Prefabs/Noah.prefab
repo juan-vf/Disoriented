@@ -165,6 +165,7 @@ MonoBehaviour:
   _sizeBackpack: 0
   _petTargetTransform: {fileID: 0}
   _petPrefab: {fileID: 674712247695645390, guid: 50d0d4268f91bd04aaab40184b5c21af, type: 3}
+  _listenerIds: {fileID: 11400000, guid: 58c5903a8701ccf4bb62c69f89f92154, type: 2}
 --- !u!156049354 &5352592308441924245
 Grid:
   m_ObjectHideFlags: 0
@@ -1079,6 +1080,7 @@ GameObject:
   - component: {fileID: 7401077394905639927}
   - component: {fileID: 5056885892602284383}
   - component: {fileID: 830686762878204449}
+  - component: {fileID: 4017251545711582205}
   m_Layer: 0
   m_Name: Noah
   m_TagString: Player
@@ -1374,6 +1376,19 @@ MonoBehaviour:
   _standingCollider: {fileID: 4625922387555457719}
   _jumpCollider: {fileID: 2552241219910109520}
   _backPackOrigin: {fileID: 3447161008608050360}
+--- !u!114 &4017251545711582205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034689201021330077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24fbb29d0429374ca3652d5b0208b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _petGrabEvent: {fileID: 11400000, guid: 58c5903a8701ccf4bb62c69f89f92154, type: 2}
 --- !u!1 &5107696255308574648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1752,7 @@ MonoBehaviour:
   _sizeBackpack: 0
   _petTargetTransform: {fileID: 0}
   _petPrefab: {fileID: 0}
+  _listenerIds: {fileID: 0}
 --- !u!156049354 &7145710965798984568
 Grid:
   m_ObjectHideFlags: 0

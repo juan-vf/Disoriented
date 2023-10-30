@@ -46,7 +46,7 @@ public class PlayerInputManager : MonoBehaviour
             _velocity = 0.0f;
         }
 
-        _isMovingCrouching = (_move.magnitude > Vector2.zero.magnitude && _IsCrouched == true)? true: false;
+        _isMovingCrouching = (_move.magnitude > Vector2.zero.magnitude && _IsCrouched == true) ? true : false;
     }
     public void Climb(InputAction.CallbackContext callbackContext)
     {
@@ -91,11 +91,13 @@ public class PlayerInputManager : MonoBehaviour
         {
             _IsPickedUp = true;
         }
-        if (callbackContext.canceled)
+        if(callbackContext.canceled){
+            _IsPickedUp = false;
+        }
+        if (callbackContext.performed)
         {
             _IsPickedUp = false;
         }
-
     }
     public static PlayerInputManager getCurrent { get { return _current; } }
     public Vector2 getMove { get { return _move; } }
@@ -103,6 +105,6 @@ public class PlayerInputManager : MonoBehaviour
     public bool getIsJumping { get { return _IsJumping; } }
     public bool getIsCrouched { get { return _IsCrouched; } }
     public bool getIsPickedUp { get { return _IsPickedUp; } }
-    public float GetVelocity{get{return _velocity;}}
-    public bool GetIsMovingCrouching{get{return _isMovingCrouching;}}
+    public float GetVelocity { get { return _velocity; } }
+    public bool GetIsMovingCrouching { get { return _isMovingCrouching; } }
 }

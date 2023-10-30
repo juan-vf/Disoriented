@@ -6,7 +6,9 @@ public class ChestController : MonoBehaviour
 {
     public GameObject prefab;
     private void Start() {
+        
         ChestEventSystem.current.onGrabPet += DropPet;
+
     }
 
     private void DropPet(){

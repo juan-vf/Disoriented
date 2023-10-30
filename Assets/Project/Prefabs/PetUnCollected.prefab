@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enabledToCollect: 1
+  _noahGrabPet: {fileID: 11400000, guid: 58c5903a8701ccf4bb62c69f89f92154, type: 2}
 --- !u!54 &1588761373839481607
 Rigidbody:
   m_ObjectHideFlags: 0
