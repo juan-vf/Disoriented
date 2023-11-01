@@ -53,7 +53,7 @@ public class BackpackControllerTest : MonoBehaviour
     }
     public void AddPet(int id, int serialId)
     {
-        if (_petsCollecteds >= _sizeBackpack) { /*SceneEventController.GetCurrent.LoadWinScene();*/ Debug.Log("Se envio el evento"); return; }
+        if (_petsCollecteds >= _sizeBackpack) {SceneEventController.GetCurrent.LoadWinScene(); Debug.Log("Se envio el evento"); return; }
         if (!PlayerInputManager.getCurrent.getIsPickedUp) { return; }
         if(_idPetToAdd == serialId){return;}
         Debug.Log("Se agrego:  " + id);

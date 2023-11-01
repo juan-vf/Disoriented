@@ -17,7 +17,9 @@ public class SceneLoaderManager : MonoBehaviour
         Application.Quit();
     }
     public void LoadWinScene(){
-        SceneManager.LoadScene("WinLevel");
+        Debug.Log("winnnnnn");
+        LoadSceneById(3);
+        // SceneManager.LoadScene("WinLevel1");
     }
     public void RestarActualScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
