@@ -17,6 +17,7 @@ public class NoahController : MonoBehaviour
     private CollectComponent _collectComponent;
     private Vector2 _climbFloats;
     private bool _isFinishClimbing = false;
+    [SerializeField] private LayerMask _climbMask;
     [Header("Collect")]
     [SerializeField] private LayerMask _collectibleLayer;
     private bool _raycastForCollect;
@@ -44,7 +45,7 @@ public class NoahController : MonoBehaviour
 
         //COMPONENTES
         _movementComponent = new MovementComponent(_rb);
-        _climbComponent = new ClimbComponent(_rb, _rb.position);
+        _climbComponent = new ClimbComponent(_rb, _rb.position, _climbMask);
         // _collectComponent = new CollectComponent(_rb);
         EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
         PetEventsManager.GetCurrent.onSendPetData += AddPet;
@@ -94,7 +95,7 @@ public class NoahController : MonoBehaviour
                 _climbFloats = new Vector2(_rb.velocity.x * .1f, _rb.velocity.y * .1f);
             }
         }
-        else
+        else if(_onGround != false)
         {
             _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
             _movementComponent.Move(_movement);
