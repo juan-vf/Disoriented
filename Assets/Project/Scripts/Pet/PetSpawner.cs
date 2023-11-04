@@ -7,8 +7,8 @@ public class PetSpawner : MonoBehaviour
     [SerializeField] private int _maxSpawnsPets;
     [SerializeField] private Vector3 _center;
     [SerializeField] private float _range;
-    private float _minHeight;
-    private float _maxHeight;
+    [SerializeField]private float _minHeight;
+    [SerializeField]private float _maxHeight;
     [SerializeField] private List<GameObject> _spawnsList = new List<GameObject>();
 
     // Lista de objetos creados

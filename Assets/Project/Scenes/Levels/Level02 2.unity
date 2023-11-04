@@ -229,10 +229,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.36632255, g: 0.38208222, b: 0.5283019, a: 1}
-  m_Intensity: 70
-  m_Range: 28.79697
-  m_SpotAngle: 117.090866
-  m_InnerSpotAngle: 60.947758
+  m_Intensity: 382.7
+  m_Range: 29.93
+  m_SpotAngle: 93.610115
+  m_InnerSpotAngle: 71.60828
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -1312,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281807255506352762, guid: 24435261e639bcf4da371630e81fe4bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 187.17285
+      value: 204.96284
       objectReference: {fileID: 0}
     - target: {fileID: 7281807255506352762, guid: 24435261e639bcf4da371630e81fe4bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1324,7 +1324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8519362913649059056, guid: 24435261e639bcf4da371630e81fe4bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 187.17285
+      value: 204.96284
       objectReference: {fileID: 0}
     - target: {fileID: 8519362913649059056, guid: 24435261e639bcf4da371630e81fe4bb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1706,7 +1706,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.36632255, g: 0.38208222, b: 0.5283019, a: 1}
-  m_Intensity: 70
+  m_Intensity: 300
   m_Range: 28.79697
   m_SpotAngle: 117.090866
   m_InnerSpotAngle: 60.947758
@@ -3340,7 +3340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2899776165003058514, guid: 21fc1038f33128e4585fb811f7d104b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 107.38
+      value: 125.17
       objectReference: {fileID: 0}
     - target: {fileID: 2899776165003058514, guid: 21fc1038f33128e4585fb811f7d104b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3497,7 +3497,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.36632255, g: 0.38208222, b: 0.5283019, a: 1}
-  m_Intensity: 70
+  m_Intensity: 300
   m_Range: 28.79697
   m_SpotAngle: 117.090866
   m_InnerSpotAngle: 60.947758
@@ -5403,7 +5403,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.36632255, g: 0.38208222, b: 0.5283019, a: 1}
-  m_Intensity: 70
+  m_Intensity: 300
   m_Range: 28.79697
   m_SpotAngle: 117.090866
   m_InnerSpotAngle: 60.947758
