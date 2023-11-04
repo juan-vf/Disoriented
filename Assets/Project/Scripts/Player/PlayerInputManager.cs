@@ -14,8 +14,10 @@ public class PlayerInputManager : MonoBehaviour
     private bool _IsCrouched = false;
     private bool _IsPickedUp;
     private float _velocity = 0.0f;
-    private float _acceleration = 0.1f;
-    private float _deceleration = 0.5f;
+    private float _acceleration = 2f;
+    private float _deceleration = 15f;
+    private float _maxVelocity = 1f;
+    private float _minVelocity = 0f;
     //VARIABLES PARA CONSULTAS
     private bool _isMovingCrouching = false;
     void Awake()
@@ -31,13 +33,14 @@ public class PlayerInputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         _move = _playerInput.actions["Move"].ReadValue<Vector2>();
 
-        if (_current.getMove != Vector2.zero && _velocity < 1.0f)
+        if (_current.getMove != Vector2.zero && _velocity < _maxVelocity)
         {
             _velocity += Time.deltaTime * _acceleration;
         }
-        if (_current.getMove == Vector2.zero && _velocity > 0.0f)
+        if (_current.getMove == Vector2.zero && _velocity > _minVelocity)
         {
             _velocity -= Time.deltaTime * _deceleration;
         }

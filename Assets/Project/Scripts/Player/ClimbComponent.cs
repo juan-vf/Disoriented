@@ -11,10 +11,12 @@ public class ClimbComponent : CharacterBaseComponent
     private Vector3 _wallPoint;
     private float _desiredDistance = .35f;
     private Vector3 _y;
-    public ClimbComponent(Rigidbody rigidbody, Vector3 y)
+    private LayerMask _layerMask;
+    public ClimbComponent(Rigidbody rigidbody, Vector3 y, LayerMask layerMask)
     {
         _rb = rigidbody;
         _y = y;
+        _layerMask = layerMask;
     }
     public void Climb(Vector2 input)
     {
@@ -31,7 +33,7 @@ public class ClimbComponent : CharacterBaseComponent
             _rb.transform.position + _rb.transform.TransformDirection(Vector2.up * 0.5f),
             _rb.transform.forward,
             out wallPoint,
-            .8f))
+            .8f, _layerMask.value))
         {
             _rb.transform.forward = -wallPoint.normal;
         }
@@ -39,7 +41,7 @@ public class ClimbComponent : CharacterBaseComponent
             _rb.transform.position + _rb.transform.TransformDirection(Vector2.up * 0.9f),
             _rb.transform.forward,
             out wallUp,
-            .8f))
+            .8f, _layerMask.value))
         {
             //PARA ARREGLAR: CUANDO ESTA PEGADO A LA PARED Y LLEGA AL FINAL DA EL INPULTO PERO LA CAPSULA INPIDE SUBIR PORQUE CHOCA CON LA SUPERFICIE
             _rb.AddForce(Vector3.up * 6.5f, ForceMode.Impulse);

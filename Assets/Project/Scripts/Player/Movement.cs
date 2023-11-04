@@ -101,7 +101,6 @@ public class Movement : MonoBehaviour
             _isMoving = false;
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, _lastValidRotation, Time.fixedDeltaTime * 10f);
-        _rb.velocity = newVelo;
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
