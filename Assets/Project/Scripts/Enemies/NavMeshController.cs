@@ -48,7 +48,6 @@ public class NavMeshController : MonoBehaviour
         _navMeshAgent.speed = speed;
     }
     public void SetAgentValues(string speed = "", string angularSpeed = "", string acceleration = "", string stopDistance = ""){
-        Debug.Log(speed != "");
         if(speed != "") _navMeshAgent.speed = float.Parse(speed);
         if(angularSpeed != "") _navMeshAgent.angularSpeed = float.Parse(angularSpeed);
         if(acceleration != "") _navMeshAgent.acceleration = float.Parse(acceleration);

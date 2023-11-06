@@ -26,10 +26,10 @@ public class PetSpawner : MonoBehaviour
             spawn.GetComponent<PetController>().GetId = randomId;
             spawn.GetComponent<PetController>().GetSerialId = randomSerialId;
             _spawnsList.Add(spawn);
-            Debug.Log(_spawnsList);
+            // Debug.Log(_spawnsList);
 
             spawn.transform.position = _center + Random.insideUnitSphere * _range;
-            spawn.transform.position = new Vector3(spawn.transform.position.x, Random.Range(_minHeight, _maxHeight), spawn.transform.position.z);
+            spawn.transform.position = new Vector3(spawn.transform.position.x, transform.position.y, spawn.transform.position.z);
         }
     }
 int RandomSerialId(List<int> ints)

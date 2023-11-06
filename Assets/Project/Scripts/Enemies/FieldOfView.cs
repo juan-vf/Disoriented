@@ -21,23 +21,23 @@ public class FieldOfView : MonoBehaviour
         // _isTargetInRangeButNotVisible = (InRange && )? true:false;
     }
 
-    // private void OnDrawGizmos() {
-    //     //PARA BUILDEAR UNA VERSION, COMENTAR TODA ESTA FUNCION, SINO NO PERMITE HACER EL BUILD
+    private void OnDrawGizmos() {
+        //PARA BUILDEAR UNA VERSION, COMENTAR TODA ESTA FUNCION, SINO NO PERMITE HACER EL BUILD
 
-    //     // FieldOfView fov = (FieldOfView)target;
+        // FieldOfView fov = (FieldOfView)target;
 
-    //     Color color = new Color(1, 0, 0, 0.2f);
+        Color color = new Color(1, 0, 0, 0.2f);
 
-    //     Handles.color = color;
-    //     Handles.DrawSolidArc(
-    //         transform.position,
-    //         transform.up,
-    //         Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
-    //         m_angleVision,
-    //         m_dstVision
-    //     );
+        Handles.color = color;
+        Handles.DrawSolidArc(
+            transform.position,
+            transform.up,
+            Quaternion.AngleAxis(-m_angleVision * 0.5f, transform.up) * transform.forward,
+            m_angleVision,
+            m_dstVision
+        );
 
-    // }
+    }
     public void Detected(
         Transform targetTrasfom,
         float distanceVision,

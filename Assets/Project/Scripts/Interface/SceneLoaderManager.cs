@@ -8,7 +8,6 @@ public class SceneLoaderManager : MonoBehaviour
     private void Start() {
         SceneEventController.GetCurrent.onLoadWinScene += LoadWinScene;
         SceneEventController.GetCurrent.onLoadLooseScene += LoadLooseScene;
-        Debug.Log("SceneLoader");
     }
     public void LoadSceneById(int idScene){
         SceneManager.LoadScene(idScene);

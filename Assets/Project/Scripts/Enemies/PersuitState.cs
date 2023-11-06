@@ -9,7 +9,7 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
     public class PersuitState : BaseState
     {
         private float _timeNoSeeingPlayer;
-        private float _maxTimeNoSeeingPlayer = 10f;
+        private float _maxTimeNoSeeingPlayer = 3f;
         private NavMeshController _navMeshController;
         private EnemieAnimatorController _enemieAnimatorController;
         public override void EnterState(EnemieStateMachineManager enemieStateMachineManager)
@@ -17,9 +17,11 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
             _timeNoSeeingPlayer = 0f;
             Debug.Log("persuit state");
             _enemieAnimatorController = enemieStateMachineManager.GetEnemieAnimatorController;
+            _navMeshController.SetSpeed(6);
         }
         public override void ExitState(EnemieStateMachineManager enemieStateMachineManager)
         {
+            _navMeshController.SetSpeed(5);
         }
 
         public override void OnCollisionEnter(Collision other)
@@ -28,16 +30,22 @@ namespace Disoriented.Assets.Project.Scripts.Enemies
             /*
                 SE PODRIA LANZAR UN EVENTO PARA QUE EJECUTE LA ANIMACION QUE LOS ATRAPA AL PLAYER
             */
-            if(other.gameObject.CompareTag("Player")){
-                _enemieAnimatorController.SetIsSearching(true);
-                _enemieAnimatorController.SetMovement(1);
-                Debug.Log("ATRAPE AL JUGADOR");
-                SceneEventController.GetCurrent.LoadLooseScene();
-            }
+            // if(other.gameObject.CompareTag("Player")){
+            //     _enemieAnimatorController.SetIsSearching(true);
+            //     _enemieAnimatorController.SetMovement(1);
+            //     Debug.Log("ATRAPE AL JUGADOR");
+            //     SceneEventController.GetCurrent.LoadLooseScene();
+            // }
         }
 
         public override void OnTriggerEnter(Collider other)
         {
+            if(other.gameObject.CompareTag("Player")){
+                _enemieAnimatorController.SetIsSearching(true);
+                _enemieAnimatorController.SetMovement(1);
+                Debug.Log("ATRAPE AL JUGADOR PER");
+                SceneEventController.GetCurrent.LoadLooseScene();
+            }
         }
         public override void UpdateState(EnemieStateMachineManager enemieStateMachineManager)
         {
