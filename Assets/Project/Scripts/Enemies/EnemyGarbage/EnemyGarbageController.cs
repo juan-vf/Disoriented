@@ -37,7 +37,7 @@ public class EnemyGarbageController : MonoBehaviour
 
             Transform randomTarget = GetRandomTarget();
 
-            // Lanzar la basura hacia la posición aleatoria
+            // Lanzar la basura hacia la posiciï¿½n aleatoria
             ThrowGarbage(randomTarget);
 
             _targetMarker.transform.position = randomTarget.position;
@@ -54,7 +54,7 @@ public class EnemyGarbageController : MonoBehaviour
 
     private Transform GetRandomTarget()
     {
-        // Elegir una posición aleatoria del array de puntos de destino
+        // Elegir una posiciï¿½n aleatoria del array de puntos de destino
         int randomIndex;
         do
         {
@@ -67,13 +67,13 @@ public class EnemyGarbageController : MonoBehaviour
 
     private void ThrowGarbage(Transform targetTransform)
     {
-        // Crear una instancia del prefab del objeto que lanzarás
+        // Crear una instancia del prefab del objeto que lanzarï¿½s
         Rigidbody garbage = Instantiate(_garbagePrefab, _hand.position, Quaternion.identity);
 
-        // Calcular la dirección hacia el punto de destino
+        // Calcular la direcciï¿½n hacia el punto de destino
         Vector3 throwDirection = targetTransform.position - garbage.transform.position;
 
-        // Calcular la velocidad inicial en función de la dirección y la fuerza de lanzamiento
+        // Calcular la velocidad inicial en funciï¿½n de la direcciï¿½n y la fuerza de lanzamiento
         float distance = throwDirection.magnitude;
         float verticalSpeed = Mathf.Sqrt((2 * _throwStrength * distance) / Mathf.Abs(Physics.gravity.y));
         float horizontalSpeed = distance / (Mathf.Sqrt((2 * distance) / Mathf.Abs(Physics.gravity.y)));
@@ -81,7 +81,7 @@ public class EnemyGarbageController : MonoBehaviour
         // Aplicar la velocidad inicial al objeto
         garbage.velocity = new Vector3(throwDirection.normalized.x * horizontalSpeed, verticalSpeed, throwDirection.normalized.z * horizontalSpeed);
 
-        Destroy(garbage.gameObject, 5f);
+        Destroy(garbage.gameObject, 4f);
     }
 
 }

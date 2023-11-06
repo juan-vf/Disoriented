@@ -103,7 +103,7 @@ public class NoahController : MonoBehaviour
 
 
         RaycastHit hit;
-        _onGround = Physics.Raycast(_rb.transform.position, Vector3.down, out hit, .1f);
+        _onGround = Physics.Raycast(_rb.transform.position, Vector3.down, out hit, .3f);
 
         // if(_noahStateMachineManager.getCurrentState != _noahStateMachineManager.getJumpState && _onGround){SetStandingCollider();}
 
@@ -147,5 +147,6 @@ public class NoahController : MonoBehaviour
         if (name == "standing") { _standingCollider.enabled = value; }
     }
     public Vector2 GetClimbMovement { get { return _climbFloats; } }
+    public LayerMask GetClimbLayer{get=>_climbMask;}
 
 }

@@ -36,6 +36,7 @@ public class ClimbComponent : CharacterBaseComponent
             .8f, _layerMask.value))
         {
             _rb.transform.forward = -wallPoint.normal;
+            _rb.velocity = _rb.transform.TransformDirection(input.normalized * _climbSpeed);
         }
         if (!Physics.Raycast(
             _rb.transform.position + _rb.transform.TransformDirection(Vector2.up * 0.9f),
@@ -47,7 +48,6 @@ public class ClimbComponent : CharacterBaseComponent
             _rb.AddForce(Vector3.up * 6.5f, ForceMode.Impulse);
             _finishClimbing = true;
         }
-        _rb.velocity = _rb.transform.TransformDirection(input.normalized * _climbSpeed);
 
 
     }

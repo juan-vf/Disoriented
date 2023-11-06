@@ -12,11 +12,16 @@ public class ScannerController : MonoBehaviour
     private bool scanning = false;
     [SerializeField] private float scanInterval = 3f; // Intervalo de tiempo entre escaneos
     private float scanTimer = 0.0f;
-    [SerializeField] private float scanDuration = 1.5f; // Duración de un escaneo
+    [SerializeField] private float scanDuration = 1.5f; // Duraciï¿½n de un escaneo
     private float scanProgress = 0.0f;
+    private bool _playerIsHidden = false;
+    private SphereCollider _scanCollider;
+    [SerializeField]private EventWithVariables _grandpaAndScanner;
 
     void Start() 
     {
+        _scanCollider = GetComponent<SphereCollider>();
+        EnviorementEventsController.GetCurrent.onHiddenPlayer += HiddenUpdates;
         _minScale = transform.localScale;
     }
     //void FixedUpdate() {
@@ -29,12 +34,14 @@ public class ScannerController : MonoBehaviour
         if (!scanning) 
         {
             
-            // Inicia un nuevo escaneo cuando no se está ejecutando uno actualmente y el temporizador ha terminado
+            // Inicia un nuevo escaneo cuando no se estï¿½ ejecutando uno actualmente y el temporizador ha terminado
             scanTimer += Time.deltaTime;
             if (scanTimer >= scanInterval)
             {
                 StartScan();
             }
+            _scanCollider.enabled = false;
+            // _grandpaAndScanner.OnEventFloat(scanInterval);
         }
 
         if (scanning)
@@ -42,7 +49,7 @@ public class ScannerController : MonoBehaviour
             // Actualiza el progreso del escaneo
             scanProgress += Time.deltaTime / scanDuration;
 
-            // Aplica el Lerp en función del progreso
+            // Aplica el Lerp en funciï¿½n del progreso
             transform.localScale = Vector3.Lerp(_minScale, _maxScale, scanProgress);
 
             if (scanProgress >= 1.0f)
@@ -50,9 +57,8 @@ public class ScannerController : MonoBehaviour
                 // Espera el tiempo del intervalo de escaneo antes de comenzar el siguiente
                 scanning = false; // Marca que el escaneo ha terminado
                 scanTimer = 0.0f; // Reinicia el temporizador
-                scanProgress = 0.0f; // Reinicia el progreso del escaneo
 
-                // Puedes agregar aquí cualquier otro código que desees ejecutar después de cada escaneo
+                // Puedes agregar aquï¿½ cualquier otro cï¿½digo que desees ejecutar despuï¿½s de cada escaneo
             }
         }
     }
@@ -60,6 +66,7 @@ public class ScannerController : MonoBehaviour
     void StartScan()
     {
         scanning = true;
+        _scanCollider.enabled = true;
     }
 
     //IEnumerator Start()
@@ -88,12 +95,14 @@ public class ScannerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(message: "OnTriggerEnter with" + other.name);
-        //if (other.gameObject.CompareTag("Enemy"))
-        //{
-        //    Debug.Log("Enemy");
-        //}
+        if (other.gameObject.CompareTag("Player") && _playerIsHidden == false)
+        {
+           SceneEventController.GetCurrent.LoadLooseScene();
+        }
 
+    }
+    void HiddenUpdates(bool hidden){
+        _playerIsHidden = hidden;
     }
     //void ESCANEAR()
     //{
@@ -101,14 +110,14 @@ public class ScannerController : MonoBehaviour
     //    //float rate = (1.0f / scanTime) * speed;
     //    //i += Time.deltaTime * rate;
     //    //transform.localScale = Vector3.Lerp(_minScale, _maxScale, i*3);
-    //    // Comprobar si el tiempo de duración del scanner ha transcurrido
+    //    // Comprobar si el tiempo de duraciï¿½n del scanner ha transcurrido
     //    if (Time.time >= scanTime)
     //    {
-    //        // Reiniciar el número de veces que se ha ejecutado el scanner
+    //        // Reiniciar el nï¿½mero de veces que se ha ejecutado el scanner
     //        Debug.Log("A");
     //        i = 0;
 
-    //        // Volver a ejecutar la función `ESCANEAR()`
+    //        // Volver a ejecutar la funciï¿½n `ESCANEAR()`
     //        ESCANEAR();
     //    }
 
