@@ -32,8 +32,8 @@ public class PetSpawnerController : MonoBehaviour
 
         _petSpawner.Spawn();
         _spawnsList = _petSpawner.GetSpawnList;
-        Debug.Log(_spawnsList[0] + "" + _spawnsList[1] );
-        Debug.Log(_spawnsList.Count);
+        // Debug.Log(_spawnsList[0] + "" + _spawnsList[1] );
+        // Debug.Log(_spawnsList.Count);
       
         //Enviamos
 
@@ -88,7 +88,7 @@ public class PetSpawnerController : MonoBehaviour
         CarriageEventController.GetCurrent.UpdateMaxCountCarriage(_spawnsList.Count);
         // PetEventsManager.GetCurrent.EnemyGoToPet(_spawnsList[0], _spawnsList[0].GetComponent<PetController>().GetSerialId);
         _enemyAndSpawner.SendLocation(_spawnsList[0]);
-        Debug.Log("Envio location");
+        // Debug.Log("Envio location");
         _spawnsList.RemoveAt(0);
         // Actualiza los elementos dentro de la lista
         

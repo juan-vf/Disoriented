@@ -10,8 +10,7 @@ public class GarbageController : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Enviar el evento");
-        
+            SceneEventController.GetCurrent.LoadLooseScene();
         }
     }
 }

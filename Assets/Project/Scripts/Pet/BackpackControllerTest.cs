@@ -9,7 +9,7 @@ public class BackpackControllerTest : MonoBehaviour
     [SerializeField] private int _rowCount = 2;
     [SerializeField] private int _petsCollecteds = 0;
     [SerializeField] private int _sizeBackpack;
-    [SerializeField] private Transform _petTargetTransform;
+    [SerializeField] private Transform _petTargetTransform = null;
     [SerializeField] private GameObject _petPrefab;
     private int _idPetToAdd;
 
@@ -19,7 +19,10 @@ public class BackpackControllerTest : MonoBehaviour
     private Grid _grid;
     private List<Vector3> _petsPositions = new List<Vector3>();
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable() {
+        _petsCollecteds = 0;
+    }
+    private void Start() 
     {
         _idPetToAdd = -100;
         _petsCollecteds = 0;
@@ -27,6 +30,7 @@ public class BackpackControllerTest : MonoBehaviour
         _sizeBackpack = _rowCount * _prefabsPerRow;
         _petsPositions.Clear();
         GeneratePositions();
+        Debug.Log(_sizeBackpack);
         // PetEventsManager.GetCurrent.onSendPetData += AddPet;
         // PetEventsManager.GetCurrent.onGrabPet += AddPet;
 
@@ -36,6 +40,9 @@ public class BackpackControllerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_petsCollecteds >= _sizeBackpack){
+            _petsCollecteds = 0;
+        }
     }
 
     void GeneratePositions()
@@ -53,11 +60,13 @@ public class BackpackControllerTest : MonoBehaviour
     }
     public void AddPet(int id, int serialId)
     {
-        if (_petsCollecteds >= _sizeBackpack) {SceneEventController.GetCurrent.LoadWinScene(); Debug.Log("Se envio el evento"); return; }
-        if (!PlayerInputManager.getCurrent.getIsPickedUp) { return; }
+        _petsCollecteds += 1;
+        Debug.Log(_petsCollecteds + "Tamaño:" + _sizeBackpack);
+        if (_petsCollecteds >= _sizeBackpack) {SceneEventController.GetCurrent.LoadWinScene();_petsCollecteds = 0; Debug.Log("Se envio el evento");return;}
+        // if (!PlayerInputManager.getCurrent.getIsPickedUp) { return;}
         if(_idPetToAdd == serialId){return;}
         Debug.Log("Se agrego:  " + id);
-        _petsCollecteds++;
+        
         _idPetToAdd = serialId;
         Pet pet = PetsList.GetCurrent.GetPetById(id);
         GeneratePet(pet);

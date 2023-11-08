@@ -54,7 +54,7 @@ public class UnCollectedPet : MonoBehaviour
             transform.localPosition = Vector3.zero;
             transform.GetComponent<CapsuleCollider>().enabled = false;
             transform.GetComponent<Rigidbody>().isKinematic = true;
-            Debug.Log("AGARRADA");
+            // Debug.Log("AGARRADA");
         }
     }
     void PickedByNoah(int value){

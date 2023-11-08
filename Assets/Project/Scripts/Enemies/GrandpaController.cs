@@ -6,12 +6,14 @@ public class GrandpaController : MonoBehaviour
 {
     [SerializeField] private bool _isEnable = false;
     [SerializeField] private GameObject _scanner;
-    [SerializeField] private float _timerScanner = 3f;
+    [SerializeField] private float _timerScanner;
+    [SerializeField]private EventWithVariables _grandpaAndScanner;
     private float _timeStartScanner;
     void Start()
     {
         _scanner.SetActive(false);
-        EnemieManagmentEvent.GetCurrent.onEnableScanner += EnableScanner;
+        // EnemieManagmentEvent.GetCurrent.onEnableScanner += EnableScanner;
+        // _grandpaAndScanner.OnEventFloat += DisableScanner;
         // Si quisiera ejecutarlo apenas me suscribo lo llamo con ()
         
     }
@@ -30,11 +32,12 @@ public class GrandpaController : MonoBehaviour
         }
     }
     // pasar parametro por referencia
-    void EnableScanner()
-    { 
-        // activar scanner.
-        _isEnable = true;        
+    void DisableScanner(float value)
+    {
+        
+        // _isEnable = true;
     }
+    
 
 
 }
