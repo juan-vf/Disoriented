@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackpackControllerTest : MonoBehaviour
 {
@@ -62,7 +63,15 @@ public class BackpackControllerTest : MonoBehaviour
     {
         _petsCollecteds += 1;
         // Debug.Log(_petsCollecteds >= _sizeBackpack);
-        if (_petsCollecteds >= _sizeBackpack) { SceneEventController.GetCurrent.LoadWinScene(); _petsCollecteds = 0; Debug.Log("Se envio el evento"); return; }
+        if (_petsCollecteds >= _sizeBackpack)
+        {
+            if(SceneManager.GetActiveScene().buildIndex == 6){
+                SceneManager.LoadScene(7);
+            }else{
+                SceneEventController.GetCurrent.LoadWinScene(); _petsCollecteds = 0; Debug.Log("Se envio el evento"); return; 
+            }
+            
+        }
         // if (!PlayerInputManager.getCurrent.getIsPickedUp) { return;}
         if (_idPetToAdd == serialId) { return; }
         // Debug.Log("Se agrego:  " + id);
