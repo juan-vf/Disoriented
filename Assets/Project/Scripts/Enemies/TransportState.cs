@@ -82,7 +82,7 @@ public class TransportState : BaseState
             //IR HACIA LA CARROZA
             _navMeshController.NavMeshGo();
             _navMeshController.UpdateTargetDir(_enemieManager.GetCarriage.position);
-            Debug.Log("LLENDO A DEJAR A LA MASCOTA A LA CARROZA");
+            // Debug.Log("LLENDO A DEJAR A LA MASCOTA A LA CARROZA");
             _navMeshController.SetStoppingDistance(1f);
 
             // if (_navMeshController.IsArrived())

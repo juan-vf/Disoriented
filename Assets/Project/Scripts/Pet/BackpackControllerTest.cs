@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackpackControllerTest : MonoBehaviour
@@ -63,7 +61,7 @@ public class BackpackControllerTest : MonoBehaviour
     public void AddPet(int id, int serialId)
     {
         _petsCollecteds += 1;
-        Debug.Log(_petsCollecteds >= _sizeBackpack);
+        // Debug.Log(_petsCollecteds >= _sizeBackpack);
         if (_petsCollecteds >= _sizeBackpack) { SceneEventController.GetCurrent.LoadWinScene(); _petsCollecteds = 0; Debug.Log("Se envio el evento"); return; }
         // if (!PlayerInputManager.getCurrent.getIsPickedUp) { return;}
         if (_idPetToAdd == serialId) { return; }
@@ -84,12 +82,20 @@ public class BackpackControllerTest : MonoBehaviour
         }
         if (_grid != null)
         {
-
-            GameObject petAdded = Instantiate(_petPrefab, _grid.GetCellCenterWorld(Vector3Int.FloorToInt(_petsPositions[_petsCollecteds - 1])), Quaternion.identity, transform);
-            if(petAdded == null){Debug.Log("MASCOTA NIULLL");}
-            // SetCamera(petAdded);
-            // Debug.Log("Creando", petAdded);
-            petAdded.GetComponent<PetController>().GetId = pet.GetId;
+            if (_petsPositions[_petsCollecteds - 1] != null)
+            {
+                if (_petPrefab != null)
+                {
+                    if (pet != null)
+                    {
+                        GameObject petAdded = Instantiate(_petPrefab, _grid.GetCellCenterWorld(Vector3Int.FloorToInt(_petsPositions[_petsCollecteds - 1])), Quaternion.identity, transform);
+                        if (petAdded == null) { Debug.Log("MASCOTA NIULLL"); }
+                        // SetCamera(petAdded);
+                        // Debug.Log("Creando", petAdded);
+                        petAdded.GetComponent<PetController>().GetId = pet.GetId;
+                    }
+                }
+            }
         }
     }
     void SetCamera(GameObject pet)

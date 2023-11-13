@@ -18,7 +18,7 @@ public class NoahController : MonoBehaviour
     private Vector2 _climbFloats;
     private bool _isFinishClimbing = false;
     [SerializeField] private LayerMask _climbMask;
-    [SerializeField] private NoahAudios _noahAudio;
+    // [SerializeField] private NoahAudios _noahAudio;
     [Header("Collect")]
     [SerializeField] private LayerMask _collectibleLayer;
     private bool _raycastForCollect;
@@ -56,20 +56,28 @@ public class NoahController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        _noahAnimatorController.SetVelocity(PlayerInputManager.getCurrent.GetVelocity);
+        if(_noahAnimatorController != null){
+            _noahAnimatorController.SetVelocity(PlayerInputManager.getCurrent.GetVelocity);
+        }
         //VARIOS IF() SE PODRIAN EVITAR SI EL PLAYERINPUTMANAGER CONTROLA LA ANIMACION O LA ORDEN EN SI
         if (PlayerInputManager.getCurrent.getIsPickedUp && _collectComponent.PetToCollect(_rb))
         {
-            _noahAnimatorController.IsCollecting();
-            _noahAnimatorController.EndCollecting(false);
+            if(_noahAnimatorController != null){
+                _noahAnimatorController.IsCollecting();
+                _noahAnimatorController.EndCollecting(false);
+            }
             // _audioCaller.OnEventAudioClip(_noahAudio.GetSaveInBackPack);
             /*
                 LANZAR EVENTO PARA QUE RECOJA LA PELOTA Y SE GUARDE EN LA MOCHILA
                 QUE NO SE EJECUTE SI JUSTO SE DA VUELTA, APRETA LA TECLA Y SE DA VUELTA, SINO LA ANIMACION SE EJECUTA DE ESPALDAS A LA MASCOTA
             */
         }
-        else { _noahAnimatorController.EndCollecting(true); }
+        else
+        {
+            if(_noahAnimatorController != null){
+                _noahAnimatorController.EndCollecting(true);
+            }
+        }
 
 
         _isFinishClimbing = _climbComponent.getFinishClimbing;
@@ -105,15 +113,15 @@ public class NoahController : MonoBehaviour
             {
                 if (_audioCaller != null)
                 {
-                    _audioCaller.OnEventAudioClip(_noahAudio.GetRun);
-                }
+                    // _audioCaller.OnEventAudioClip(_noahAudio.GetRun);
+                }else{Debug.Log("AUDIO NULO");}
             }
             else
             {
                 if (_audioCaller != null)
                 {
-                    _audioCaller.OnEventInt(1);
-                }
+                    // _audioCaller.OnEventInt(1);
+                }else{Debug.Log("AUDIO NULO");}
             }
         }
 

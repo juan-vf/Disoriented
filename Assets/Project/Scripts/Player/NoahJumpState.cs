@@ -10,7 +10,7 @@ public class NoahJumpState : NoahBaseState
     private float _countToJumpAnimation;
     public override void EnterState(NoahStateMachineManager noahStateMachineManager)
     {
-        Debug.Log("ENTER SALTO");
+        // Debug.Log("ENTER SALTO");
         noahStateMachineManager.GetNoahController.SetJumpCollider();
         noahStateMachineManager.GetNoahAnimatorController.Jump(true);
         Jump(noahStateMachineManager.GetRigidbody);
@@ -28,10 +28,10 @@ public class NoahJumpState : NoahBaseState
 
     public override void UpdateState(NoahStateMachineManager noahStateMachineManager)
     {
-        Debug.Log("NoahJumpState");
+        // Debug.Log("NoahJumpState");
         if (noahStateMachineManager.GetNoahController.GetOnGround)
         {
-            Debug.Log("En el suelo");
+            // Debug.Log("En el suelo");
             noahStateMachineManager.GetNoahController.EnaDisaColliders("jump", false);
             noahStateMachineManager.SwitchState(noahStateMachineManager.getNoahDefaultState);
         }

@@ -12,6 +12,7 @@ public class GrandpaController : MonoBehaviour
     void Start()
     {
         _scanner.SetActive(false);
+        
         // EnemieManagmentEvent.GetCurrent.onEnableScanner += EnableScanner;
         // _grandpaAndScanner.OnEventFloat += DisableScanner;
         // Si quisiera ejecutarlo apenas me suscribo lo llamo con ()
@@ -23,7 +24,7 @@ public class GrandpaController : MonoBehaviour
     {
         _timeStartScanner += Time.deltaTime;
 
-        if (_timeStartScanner >= _timerScanner && _isEnable)
+        if (_timeStartScanner >= _timerScanner)
         {
 
                 _scanner.SetActive(false);  

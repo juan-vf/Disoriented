@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnCollectedPet : MonoBehaviour
@@ -11,7 +9,7 @@ public class UnCollectedPet : MonoBehaviour
     [SerializeField] private GrabEventManager _noahGrabPet;
     [SerializeField] private GrabEventManager _enemyGrabPet;
     [SerializeField] private EventWithVariables _callAudio;
-    [SerializeField]private AudioBox _audioBox;
+    // [SerializeField]private AudioBox _audioBox;
     void Start()
     {
 
@@ -25,7 +23,7 @@ public class UnCollectedPet : MonoBehaviour
         _noahGrabPet.onGrabPet += PickedByNoah;
         _enemyGrabPet.onGrabPetInHand += PickedUpByEnemy;
 
-        _callAudio.OnEventAudioClip(_audioBox.GetRun);
+        // _callAudio.OnEventAudioClip(_audioBox.GetRun);
     }
     private void Update()
     {
@@ -65,7 +63,7 @@ public class UnCollectedPet : MonoBehaviour
         if(_petController.GetSerialId == value){
             if(_petController != null){
                 _noahGrabPet.SendPetToListener(_petController.GetId, _petController.GetSerialId);
-                _callAudio.OnEventInt(1);
+                // _callAudio.OnEventInt(1);
                 gameObject.SetActive(false);
             }
         }

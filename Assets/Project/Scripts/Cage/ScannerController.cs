@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ScannerController : MonoBehaviour
@@ -10,9 +9,9 @@ public class ScannerController : MonoBehaviour
     //public float duration = 5f;
 
     private bool scanning = false;
-    [SerializeField] private float scanInterval = 3f; // Intervalo de tiempo entre escaneos
+    [SerializeField] private float scanInterval; //= 3f; // Intervalo de tiempo entre escaneos
     private float scanTimer = 0.0f;
-    [SerializeField] private float scanDuration = 1.5f; // Duraci�n de un escaneo
+    [SerializeField] private float scanDuration; //= 1.5f; // Duraci�n de un escaneo
     private float scanProgress = 0.0f;
     private bool _playerIsHidden = false;
     private SphereCollider _scanCollider;
@@ -33,19 +32,21 @@ public class ScannerController : MonoBehaviour
     {
         if (!scanning) 
         {
-            
+            // Debug.Log("!scanning");
             // Inicia un nuevo escaneo cuando no se est� ejecutando uno actualmente y el temporizador ha terminado
             scanTimer += Time.deltaTime;
+            // Debug.Log(scanTimer + "scanInterval" + scanInterval);
             if (scanTimer >= scanInterval)
             {
                 StartScan();
             }
-            _scanCollider.enabled = false;
+            // _scanCollider.enabled = false;
             // _grandpaAndScanner.OnEventFloat(scanInterval);
         }
 
         if (scanning)
         {
+            // Debug.Log("scanning");
             // Actualiza el progreso del escaneo
             scanProgress += Time.deltaTime / scanDuration;
 
@@ -54,10 +55,11 @@ public class ScannerController : MonoBehaviour
 
             if (scanProgress >= 1.0f)
             {
+                scanProgress = 0f;
                 // Espera el tiempo del intervalo de escaneo antes de comenzar el siguiente
                 scanning = false; // Marca que el escaneo ha terminado
                 scanTimer = 0.0f; // Reinicia el temporizador
-
+                transform.localScale = _minScale;
                 // Puedes agregar aqu� cualquier otro c�digo que desees ejecutar despu�s de cada escaneo
             }
         }
@@ -66,7 +68,7 @@ public class ScannerController : MonoBehaviour
     void StartScan()
     {
         scanning = true;
-        _scanCollider.enabled = true;
+        // _scanCollider.enabled = true;
     }
 
     //IEnumerator Start()

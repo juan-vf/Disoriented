@@ -162,11 +162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 190.6101
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 44.6093
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 791
+      value: 766.7
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -420
+      value: -410.6
       objectReference: {fileID: 0}
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -215,6 +215,18 @@ PrefabInstance:
     - target: {fileID: 6580686055958585852, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239037779181701437, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
+      propertyPath: m_text
+      value: Volver al Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239037779181701437, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
+      propertyPath: m_fontSize
+      value: 28.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239037779181701437, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28.76
       objectReference: {fileID: 0}
     - target: {fileID: 8646060514270193978, guid: 4d8b0be425629ca44a31d07eacd42a7a, type: 3}
       propertyPath: m_Name
@@ -282,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nivel 1 Superado
+  m_text: Nivel Superado
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

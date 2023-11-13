@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NoahAudioController : MonoBehaviour
@@ -31,8 +32,11 @@ public class NoahAudioController : MonoBehaviour
         // }
     }
     void PlayAudio(AudioClip clip){
+        if(_audioSource == null){
+            return;
+        }
         if(_audioSource.clip == clip){
-            Debug.Log("mismo audio");
+            // Debug.Log("mismo audio");
             return;
         }
         _audioSource.clip = _audiosBox.GetRun;
@@ -40,6 +44,9 @@ public class NoahAudioController : MonoBehaviour
         _audioSource.Play();
     }
     void StopAudio(int nada){
+        if(_audioSource == null){
+            return;
+        }
         _audioSource.clip = null;
         _audioSource.Stop();
     }
