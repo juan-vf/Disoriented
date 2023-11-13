@@ -10,6 +10,8 @@ public class UnCollectedPet : MonoBehaviour
     [Header("Events")]
     [SerializeField] private GrabEventManager _noahGrabPet;
     [SerializeField] private GrabEventManager _enemyGrabPet;
+    [SerializeField] private EventWithVariables _callAudio;
+    [SerializeField]private AudioBox _audioBox;
     void Start()
     {
 
@@ -22,6 +24,8 @@ public class UnCollectedPet : MonoBehaviour
         //SOEVENTS
         _noahGrabPet.onGrabPet += PickedByNoah;
         _enemyGrabPet.onGrabPetInHand += PickedUpByEnemy;
+
+        _callAudio.OnEventAudioClip(_audioBox.GetRun);
     }
     private void Update()
     {
@@ -59,8 +63,11 @@ public class UnCollectedPet : MonoBehaviour
     }
     void PickedByNoah(int value){
         if(_petController.GetSerialId == value){
-            _noahGrabPet.SendPetToListener(_petController.GetId, _petController.GetSerialId);
-            gameObject.SetActive(false);
+            if(_petController != null){
+                _noahGrabPet.SendPetToListener(_petController.GetId, _petController.GetSerialId);
+                _callAudio.OnEventInt(1);
+                gameObject.SetActive(false);
+            }
         }
     }
     public bool GetIsPickedUp { get { return _isPicked; } }

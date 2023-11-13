@@ -166,6 +166,7 @@ MonoBehaviour:
   _petTargetTransform: {fileID: 0}
   _petPrefab: {fileID: 674712247695645390, guid: 50d0d4268f91bd04aaab40184b5c21af, type: 3}
   _listenerIds: {fileID: 11400000, guid: 58c5903a8701ccf4bb62c69f89f92154, type: 2}
+  _grid: {fileID: 5352592308441924245}
 --- !u!156049354 &5352592308441924245
 Grid:
   m_ObjectHideFlags: 0
@@ -1756,6 +1757,7 @@ MonoBehaviour:
   _petTargetTransform: {fileID: 0}
   _petPrefab: {fileID: 0}
   _listenerIds: {fileID: 0}
+  _grid: {fileID: 0}
 --- !u!156049354 &7145710965798984568
 Grid:
   m_ObjectHideFlags: 0

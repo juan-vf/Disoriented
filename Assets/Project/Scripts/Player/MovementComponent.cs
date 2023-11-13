@@ -36,6 +36,7 @@ public class MovementComponent : CharacterBaseComponent
         }
         return;
     }
+    public Vector2 GetVelocity{get{return new Vector2(_rb.velocity.x, _rb.velocity.z);}}
     public override void Process()
     {
     }

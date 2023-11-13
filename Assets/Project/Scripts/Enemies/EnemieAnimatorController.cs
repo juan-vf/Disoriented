@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemieAnimatorController : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField]private Animator _animator;
     private int _movement;
     private int _isTransporting;
     private int _isSearching;

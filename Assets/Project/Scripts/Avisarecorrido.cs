@@ -17,6 +17,8 @@ public class Avisarecorrido : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other) {
-        enemy.SetActive(true);
+        if(other.CompareTag("Player")){
+            enemy.SetActive(true);
+        }
     }
 }

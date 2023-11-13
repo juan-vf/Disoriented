@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8296b8788cfe444895612932bbe0242, type: 3}
+  m_Name: NoahAudio
+  m_EditorClassIdentifier: 
+  runClip: {fileID: 8300000, guid: 8015eeeee424818408a381c5f269524f, type: 3}

@@ -18,6 +18,7 @@ public class NoahController : MonoBehaviour
     private Vector2 _climbFloats;
     private bool _isFinishClimbing = false;
     [SerializeField] private LayerMask _climbMask;
+    [SerializeField] private NoahAudios _noahAudio;
     [Header("Collect")]
     [SerializeField] private LayerMask _collectibleLayer;
     private bool _raycastForCollect;
@@ -29,12 +30,13 @@ public class NoahController : MonoBehaviour
     [Header("BackPack")]
     [SerializeField] private Transform _backPackOrigin;
     [Header("Events")]
-    // [SerializeField]private GrabEventManager _grabPetSO;
+    [SerializeField] private EventWithVariables _audioCaller;
     private BackpackControllerTest _backpackControllerTest;
     private bool _onGround;
     // Start is called before the first frame update
     void Start()
     {
+        // Debug.Log(_audioCaller == null);
         _current = this;
         _rb = GetComponent<Rigidbody>();
         _noahStateMachineManager = GetComponent<NoahStateMachineManager>();
@@ -61,7 +63,7 @@ public class NoahController : MonoBehaviour
         {
             _noahAnimatorController.IsCollecting();
             _noahAnimatorController.EndCollecting(false);
-
+            // _audioCaller.OnEventAudioClip(_noahAudio.GetSaveInBackPack);
             /*
                 LANZAR EVENTO PARA QUE RECOJA LA PELOTA Y SE GUARDE EN LA MOCHILA
                 QUE NO SE EJECUTE SI JUSTO SE DA VUELTA, APRETA LA TECLA Y SE DA VUELTA, SINO LA ANIMACION SE EJECUTA DE ESPALDAS A LA MASCOTA
@@ -95,10 +97,24 @@ public class NoahController : MonoBehaviour
                 _climbFloats = new Vector2(_rb.velocity.x * .1f, _rb.velocity.y * .1f);
             }
         }
-        else if(_onGround != false)
+        else if (_onGround != false)
         {
             _movement = new Vector3(PlayerInputManager.getCurrent.getMove.x, 0f, PlayerInputManager.getCurrent.getMove.y);
             _movementComponent.Move(_movement);
+            if (PlayerInputManager.getCurrent.getMove != Vector2.zero && _onGround == true)
+            {
+                if (_audioCaller != null)
+                {
+                    _audioCaller.OnEventAudioClip(_noahAudio.GetRun);
+                }
+            }
+            else
+            {
+                if (_audioCaller != null)
+                {
+                    _audioCaller.OnEventInt(1);
+                }
+            }
         }
 
 
@@ -110,12 +126,16 @@ public class NoahController : MonoBehaviour
         _noahStateMachineManager.GetNoahAnimatorController.OnGround(_onGround);
 
         _noahStateMachineManager.GetNoahAnimatorController.Crouch(PlayerInputManager.getCurrent.getIsCrouched);
+        // if(_rb.velocity != Vector3.zero){
+        //     // _audioCaller.OnEventAudioClip(_noahAudio.GetRun);
+        // }
     }
     void HiddenUpdates(bool value)
     {
         _hide = value;
     }
-    void AddPet(int id, int serialId){
+    void AddPet(int id, int serialId)
+    {
         _backpackControllerTest.AddPet(id, serialId);
     }
     public bool GetIsFinishClimbing { get { return _isFinishClimbing; } }
@@ -147,6 +167,7 @@ public class NoahController : MonoBehaviour
         if (name == "standing") { _standingCollider.enabled = value; }
     }
     public Vector2 GetClimbMovement { get { return _climbFloats; } }
-    public LayerMask GetClimbLayer{get=>_climbMask;}
+    public LayerMask GetClimbLayer { get => _climbMask; }
+    public MovementComponent GetMovementComponent { get { return _movementComponent; } }
 
 }

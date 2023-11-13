@@ -37,7 +37,7 @@ public class PulleyController : MonoBehaviour
         }
         // if(_IsComingDown && _IsComingUp == false && transform.position != posicionActual + Vector3.down * _howMuchDown){Debug.Log("SE PARO");_IsComingUp = true ; _IsComingDown = false;}
         if(_IsComingUp && _IsComingDown == false){
-            Debug.Log("SUBIO1");
+            // Debug.Log("SUBIO1");
             bajarObjeto(transform.position, posicionActual, _timeToDown);
             if(transform.position == posicionActual){
                 _IsComingUp = false;tiempoTranscurrido = 0;
@@ -51,7 +51,7 @@ public class PulleyController : MonoBehaviour
         Vector3 posicionIntermedia = Vector3.Lerp(posicionInicial, posicionFinal, tiempoTranscurrido / tiempo);
         transform.position = posicionIntermedia;
         tiempoTranscurrido += Time.deltaTime;
-        Debug.Log(posicionIntermedia);
+        // Debug.Log(posicionIntermedia);
     }
 
 }

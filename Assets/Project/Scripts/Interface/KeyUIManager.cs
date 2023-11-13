@@ -28,10 +28,14 @@ public class KeyUIManager : MonoBehaviour
         //SI LA ESCALA ACTUAL ES IGUAL A LA QUE SE ESPERA SE REGRESA A LA ORIGINAL
     }
     void SetUIElement(UIElementForMechanic SO){
-        _image.color = new Color(255,255,255,255);
-        _image.sprite = SO.GetSprite;
+        if(_image != null){
+            _image.color = new Color(255,255,255,255);
+            _image.sprite = SO.GetSprite;
+        }
     }
     void DisableUIElement(){
-        _image.color = new Color(0,0,0,0);
+        if(_image != null){
+            _image.color = new Color(0,0,0,0);
+        }
     }
 }

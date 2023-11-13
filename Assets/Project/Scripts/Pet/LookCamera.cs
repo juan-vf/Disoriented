@@ -14,7 +14,9 @@ public class LookCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(_cameraTransform.position + (Vector3.left * 11));
+        if(_cameraTransform != null){
+            transform.LookAt(_cameraTransform.position + (Vector3.left * 11));
+        }
         
     }
     public void SetCamera(Transform camera){
